@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "interviews": [
+    {
+      "id": "wang-ning-2026-01-23-yangsheng-s02e03",
+      "person": "王宁",
+      "title": "张扬对话王宁：中国潮玩为何能风靡全球",
+      "program": "扬声 第2季 第3集",
+      "interview_type": "one_on_one",
+      "interviewers": [
+        "张扬"
+      ],
+      "published_date": "2026-01-23",
+      "event_date": null,
+      "source": {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=G9xZVxKKDGI",
+        "publisher": "Tencent Video Documentary",
+        "language": "zh-CN"
+      },
+      "topics": [
+        "创业经历",
+        "潮玩产业",
+        "品牌全球化"
+      ]
+    },
+    {
+      "id": "wang-ning-2026-03-28-cctv-dialogue",
+      "person": "王宁",
+      "title": "一场关于快乐的商业革命",
+      "program": "央视《对话》",
+      "interview_type": "one_on_one",
+      "interviewers": [],
+      "published_date": "2026-03-28",
+      "event_date": null,
+      "source": {
+        "type": "video",
+        "url": "https://tv.cctv.com/2026/03/28/VIDETH3qW2kpyiDOiu487F0D260328.shtml",
+        "publisher": "央视网",
+        "language": "zh-CN"
+      },
+      "topics": [
+        "泡泡玛特",
+        "潮玩产业",
+        "全球化"
+      ]
+    },
+    {
+      "id": "wang-ning-2026-05-06-high-energy-vol-215",
+      "person": "王宁",
+      "title": "再访王宁：与王宁聊他的2025年以及泡泡玛特的未来",
+      "program": "高能量 Vol.215",
+      "interview_type": "group_conversation",
+      "interviewers": [
+        "李翔",
+        "李丰"
+      ],
+      "published_date": "2026-05-06",
+      "event_date": null,
+      "source": {
+        "type": "audio",
+        "url": "https://www.xiaoyuzhoufm.com/episode/69fab1bcf93890ea814d0717",
+        "publisher": "高能量",
+        "language": "zh-CN"
+      },
+      "topics": [
+        "2025年复盘",
+        "组织建设",
+        "泡泡玛特未来战略"
+      ]
+    }
+  ]
+}
