@@ -1,0 +1,30 @@
+{
+  "person_id": "wang-ning",
+  "title": "创造一种新的快乐方式，并不简单",
+  "program": "FanPodcast今夜只放空 EP01",
+  "interview_type": "group_conversation",
+  "other_participants": [
+    "刘擎"
+  ],
+  "published_date": "2025-10-10",
+  "event_date": null,
+  "source": {
+    "type": "audio",
+    "url": "https://www.xiaoyuzhoufm.com/episode/68e8cb21525f51df389cb132",
+    "publisher": "FanPodcast今夜只放空",
+    "channel_id": "fanpodcast-xiaoyuzhou",
+    "language": "zh-CN"
+  },
+  "topics": [
+    "艺术与商业",
+    "情绪价值",
+    "代际观念",
+    "潮玩社会价值"
+  ],
+  "screening": {
+    "is_primary": true,
+    "is_complete": true,
+    "is_conversation": true,
+    "is_excluded_event": false
+  }
+}

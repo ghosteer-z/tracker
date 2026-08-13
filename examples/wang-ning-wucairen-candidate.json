@@ -1,0 +1,30 @@
+{
+  "person_id": "wang-ning",
+  "title": "泡泡玛特凭什么？对话王宁",
+  "program": "武财人 07",
+  "interview_type": "one_on_one",
+  "other_participants": [
+    "大武老师"
+  ],
+  "published_date": "2025-06-16",
+  "event_date": null,
+  "source": {
+    "type": "audio",
+    "url": "https://www.xiaoyuzhoufm.com/episode/68504d514abe6e29cb7745ad",
+    "publisher": "武财人",
+    "channel_id": "wucairen-podcast",
+    "language": "zh-CN"
+  },
+  "topics": [
+    "创业经历",
+    "潮玩商业模式",
+    "回应市场质疑",
+    "品牌全球化"
+  ],
+  "screening": {
+    "is_primary": true,
+    "is_complete": true,
+    "is_conversation": true,
+    "is_excluded_event": false
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "person_id": "wang-ning",
+  "title": "‘中国制造和中国文化成就了我们’——泡泡玛特创始人王宁访谈",
+  "program": "人民日报访谈",
+  "interview_type": "one_on_one",
+  "other_participants": [
+    "王昊男"
+  ],
+  "published_date": "2025-07-21",
+  "event_date": null,
+  "source": {
+    "type": "transcript",
+    "url": "https://bj.people.com.cn/n2/2025/0721/c14540-41297558.html",
+    "publisher": "人民日报",
+    "channel_id": "people-daily",
+    "language": "zh-CN"
+  },
+  "topics": [
+    "潮玩产业",
+    "文化出海",
+    "中国制造",
+    "品牌全球化"
+  ],
+  "screening": {
+    "is_primary": true,
+    "is_complete": true,
+    "is_conversation": true,
+    "is_excluded_event": false
+  }
+}

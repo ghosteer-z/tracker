@@ -96,6 +96,81 @@
         "深度学习",
         "人工智能未来"
       ]
+    },
+    {
+      "person_id": "wang-ning",
+      "title": "泡泡玛特凭什么？对话王宁",
+      "program": "武财人 07",
+      "interview_type": "one_on_one",
+      "other_participants": [
+        "大武老师"
+      ],
+      "published_date": "2025-06-16",
+      "event_date": null,
+      "source": {
+        "type": "audio",
+        "url": "https://www.xiaoyuzhoufm.com/episode/68504d514abe6e29cb7745ad",
+        "publisher": "武财人",
+        "channel_id": "wucairen-podcast",
+        "language": "zh-CN"
+      },
+      "topics": [
+        "创业经历",
+        "潮玩商业模式",
+        "回应市场质疑",
+        "品牌全球化"
+      ],
+      "id": "wang-ning-2025-06-16-9b0249f7"
+    },
+    {
+      "person_id": "wang-ning",
+      "title": "‘中国制造和中国文化成就了我们’——泡泡玛特创始人王宁访谈",
+      "program": "人民日报访谈",
+      "interview_type": "one_on_one",
+      "other_participants": [
+        "王昊男"
+      ],
+      "published_date": "2025-07-21",
+      "event_date": null,
+      "source": {
+        "type": "transcript",
+        "url": "https://bj.people.com.cn/n2/2025/0721/c14540-41297558.html",
+        "publisher": "人民日报",
+        "channel_id": "people-daily",
+        "language": "zh-CN"
+      },
+      "topics": [
+        "潮玩产业",
+        "文化出海",
+        "中国制造",
+        "品牌全球化"
+      ],
+      "id": "wang-ning-2025-07-21-886ad5a6"
+    },
+    {
+      "person_id": "wang-ning",
+      "title": "创造一种新的快乐方式，并不简单",
+      "program": "FanPodcast今夜只放空 EP01",
+      "interview_type": "group_conversation",
+      "other_participants": [
+        "刘擎"
+      ],
+      "published_date": "2025-10-10",
+      "event_date": null,
+      "source": {
+        "type": "audio",
+        "url": "https://www.xiaoyuzhoufm.com/episode/68e8cb21525f51df389cb132",
+        "publisher": "FanPodcast今夜只放空",
+        "channel_id": "fanpodcast-xiaoyuzhou",
+        "language": "zh-CN"
+      },
+      "topics": [
+        "艺术与商业",
+        "情绪价值",
+        "代际观念",
+        "潮玩社会价值"
+      ],
+      "id": "wang-ning-2025-10-10-9e2147c7"
     }
   ]
 }

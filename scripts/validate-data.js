@@ -6,6 +6,7 @@ const allowedInterviewTypes = new Set(["one_on_one", "group_conversation"]);
 const allowedSourceTypes = new Set(["transcript", "video", "audio"]);
 const allowedChannelTypes = new Set(["video_library", "youtube", "podcast_archive", "official_archive"]);
 const allowedSearchStatuses = new Set(["partial", "completed", "blocked"]);
+const allowedSearchTypes = new Set(["trusted_channel", "broad_web"]);
 const allowedSourceRoles = new Set(["subject_official", "interview_media", "program_producer", "event_organizer"]);
 const errors = [];
 
@@ -63,14 +64,14 @@ const channelData = readJson("channels.json");
 const searchData = readJson("search-log.json");
 const dedupData = readJson("dedup-log.json");
 
-for (const [name, data, listField] of [
-  ["interviews.json", interviewData, "interviews"],
-  ["people.json", peopleData, "people"],
-  ["channels.json", channelData, "people"],
-  ["search-log.json", searchData, "searches"],
-  ["dedup-log.json", dedupData, "entries"]
+for (const [name, data, listField, schemaVersion] of [
+  ["interviews.json", interviewData, "interviews", 1],
+  ["people.json", peopleData, "people", 1],
+  ["channels.json", channelData, "people", 1],
+  ["search-log.json", searchData, "searches", 2],
+  ["dedup-log.json", dedupData, "entries", 1]
 ]) {
-  if (data.schema_version !== 1) errors.push(`${name}: schema_version 必须是 1`);
+  if (data.schema_version !== schemaVersion) errors.push(`${name}: schema_version 必须是 ${schemaVersion}`);
   if (!Array.isArray(data[listField])) errors.push(`${name}: ${listField} 必须是数组`);
 }
 
@@ -183,19 +184,57 @@ for (const [index, record] of (interviewData.interviews || []).entries()) {
 const searchIds = new Map();
 for (const [index, search] of (searchData.searches || []).entries()) {
   const label = `检索第 ${index + 1} 条${search.id ? ` (${search.id})` : ""}`;
-  for (const field of ["id", "person_id", "channel_id", "checked_at", "query", "scope", "next_step", "notes"]) {
+  for (const field of ["id", "person_id", "search_type", "checked_at", "scope", "next_step", "notes"]) {
     requireString(search, field, label);
   }
   checkId(search.id, label);
   checkUniqueId(search.id, searchIds, label);
   if (!personIds.has(search.person_id)) errors.push(`${label}: person_id 找不到对应人物`);
-  if (!channelsByPerson.get(search.person_id)?.has(search.channel_id)) {
-    errors.push(`${label}: channel_id 不属于本次检索人物`);
+  if (!allowedSearchTypes.has(search.search_type)) {
+    errors.push(`${label}: search_type 只能是 trusted_channel 或 broad_web`);
+  }
+  if (search.search_type === "trusted_channel") {
+    if (typeof search.channel_id !== "string" || !channelsByPerson.get(search.person_id)?.has(search.channel_id)) {
+      errors.push(`${label}: 可信来源检索必须填写属于本次检索人物的 channel_id`);
+    }
+  } else if (search.channel_id !== null) {
+    errors.push(`${label}: 全网补充检索的 channel_id 必须是 null`);
+  }
+  if (!Array.isArray(search.platforms) || search.platforms.some(item => typeof item !== "string" || item.trim() === "")) {
+    errors.push(`${label}: platforms 必须是文字数组`);
+  } else if (search.search_type === "broad_web" && search.platforms.length === 0) {
+    errors.push(`${label}: 全网补充检索必须写明检查过的平台`);
+  }
+  if (!Array.isArray(search.queries) || search.queries.length === 0 || search.queries.some(item => typeof item !== "string" || item.trim() === "")) {
+    errors.push(`${label}: queries 必须是至少包含一项的文字数组`);
+  }
+  if (search.date_range !== null) {
+    const range = search.date_range;
+    if (!range || typeof range !== "object" || Array.isArray(range) || !isDate(range.from) || !isDate(range.to)) {
+      errors.push(`${label}: date_range 必须是 null 或包含有效 from、to 日期的对象`);
+    } else if (range.from > range.to) {
+      errors.push(`${label}: date_range.from 不能晚于 date_range.to`);
+    }
   }
   if (!isDate(search.checked_at)) errors.push(`${label}: checked_at 必须是有效的 YYYY-MM-DD 日期`);
   if (!allowedSearchStatuses.has(search.status)) errors.push(`${label}: status 只能是 partial、completed 或 blocked`);
-  if (!Number.isInteger(search.reviewed_count) || search.reviewed_count < 0) errors.push(`${label}: reviewed_count 必须是非负整数`);
-  if (!Number.isInteger(search.excluded_count) || search.excluded_count < 0) errors.push(`${label}: excluded_count 必须是非负整数`);
+  const counts = search.counts;
+  const countFields = ["reviewed_results", "candidates_found", "added_new", "merged_duplicates", "excluded"];
+  if (!counts || typeof counts !== "object" || Array.isArray(counts)) {
+    errors.push(`${label}: counts 必须是数量统计对象`);
+  } else {
+    for (const field of countFields) {
+      if (!Number.isInteger(counts[field]) || counts[field] < 0) errors.push(`${label}: counts.${field} 必须是非负整数`);
+    }
+    if (countFields.every(field => Number.isInteger(counts[field]) && counts[field] >= 0)) {
+      if (counts.candidates_found > counts.reviewed_results) {
+        errors.push(`${label}: candidates_found 不能超过 reviewed_results`);
+      }
+      if (counts.added_new + counts.merged_duplicates + counts.excluded !== counts.candidates_found) {
+        errors.push(`${label}: 新增、合并与排除数量之和必须等于 candidates_found`);
+      }
+    }
+  }
   if (!Array.isArray(search.accepted_interview_ids)) {
     errors.push(`${label}: accepted_interview_ids 必须是数组`);
   } else {
@@ -205,8 +244,9 @@ for (const [index, search] of (searchData.searches || []).entries()) {
         errors.push(`${label}: 已收录访谈 ${id} 不属于本次检索人物`);
       }
     }
-    if (search.accepted_interview_ids.length + search.excluded_count > search.reviewed_count) {
-      errors.push(`${label}: 收录数与排除数之和不能超过 reviewed_count`);
+    if (counts && Number.isInteger(counts.added_new) && Number.isInteger(counts.merged_duplicates)
+      && search.accepted_interview_ids.length > counts.added_new + counts.merged_duplicates) {
+      errors.push(`${label}: accepted_interview_ids 数量不能超过新增与合并数量之和`);
     }
   }
 }

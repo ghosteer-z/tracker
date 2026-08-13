@@ -96,6 +96,94 @@
           "content": "高能量制作和发布的完整播客访谈",
           "search_method": "在节目历史内容中搜索王宁和泡泡玛特",
           "access_notes": "节目可能同时存在音频版和较短视频版，优先保留完整版本"
+        },
+        {
+          "id": "pop-mart-newsroom",
+          "name": "泡泡玛特官网媒体新闻",
+          "type": "official_archive",
+          "url": "https://www.popmart.com.cn/home/news",
+          "owner": "泡泡玛特",
+          "source_role": "subject_official",
+          "content": "泡泡玛特官方确认、发布或推荐的王宁采访入口",
+          "search_method": "逐页检查媒体新闻中的王宁、专访、对话和访谈条目，再追到原始节目或媒体页面",
+          "access_notes": "官网条目经常只是外部采访入口；若原始发布方提供完整内容，应保留原始发布方而不是官网摘要"
+        },
+        {
+          "id": "yangsheng-podcast",
+          "name": "扬声播客",
+          "type": "podcast_archive",
+          "url": "https://www.xiaoyuzhoufm.com/podcast/6974588797ac59eca775c806",
+          "owner": "扬声",
+          "source_role": "program_producer",
+          "content": "《扬声》制作和发布的完整人物对话音频",
+          "search_method": "在节目主页和节目官方视频渠道中搜索王宁及泡泡玛特，并核对音视频是否属于同一场访谈",
+          "access_notes": "同一场可能同时存在完整视频和音频，只收录更完整的一个；节目摘要和剪辑片段不单独收录"
+        },
+        {
+          "id": "wucairen-podcast",
+          "name": "武财人播客",
+          "type": "podcast_archive",
+          "url": "https://www.xiaoyuzhoufm.com/podcast/67da93ceee831906444a1fa5",
+          "owner": "武财人",
+          "source_role": "program_producer",
+          "content": "《武财人》制作和发布的完整商业人物访谈音频",
+          "search_method": "在节目历史内容中搜索王宁、泡泡玛特，并同时检查节目列出的其他官方收听渠道",
+          "access_notes": "节目存在录制多年后才公开的内容，发布时间和访谈发生时间需要分别记录"
+        },
+        {
+          "id": "jiemian-interviews",
+          "name": "界面新闻采访",
+          "type": "official_archive",
+          "url": "https://www.jiemian.com/",
+          "owner": "界面新闻",
+          "source_role": "interview_media",
+          "content": "界面新闻原创制作的商业人物视频专访和问答内容",
+          "search_method": "站内及限定域名搜索王宁、泡泡玛特、专访和对话，再检查视频时长与正文是否完整",
+          "access_notes": "短视频切片、演讲实录和转载稿不收录；播放器可能需要JavaScript或客户端"
+        },
+        {
+          "id": "china-entrepreneur",
+          "name": "中国企业家",
+          "type": "official_archive",
+          "url": "https://www.iceo.com.cn/",
+          "owner": "中国企业家杂志",
+          "source_role": "interview_media",
+          "content": "《中国企业家》原创采写的王宁深度采访和对话",
+          "search_method": "站内及限定域名搜索王宁、泡泡玛特、专访、对话和访谈，并核验是否保留完整问答或谈话内容",
+          "access_notes": "其他门户转载的《中国企业家》稿件只作线索，优先保留杂志自己的原始页面"
+        },
+        {
+          "id": "people-daily",
+          "name": "人民日报及人民日报海外版",
+          "type": "official_archive",
+          "url": "https://www.people.com.cn/",
+          "owner": "人民日报社",
+          "source_role": "interview_media",
+          "content": "人民日报及人民日报海外版原创刊发的完整问答式人物专访",
+          "search_method": "限定people.com.cn和人民日报电子报搜索王宁、泡泡玛特、访谈及专访，核对署名、版次和原始发布日期",
+          "access_notes": "新华网等站点可能转载同一篇文章；同一场只保留人民日报原始页面或电子报底稿"
+        },
+        {
+          "id": "xinhua-news",
+          "name": "新华网及新华社",
+          "type": "official_archive",
+          "url": "https://www.news.cn/",
+          "owner": "新华通讯社",
+          "source_role": "interview_media",
+          "content": "新华社原创制作的人物采访视频、音频和完整问答稿",
+          "search_method": "限定news.cn搜索王宁、泡泡玛特、专访、对话和访谈，并通过页面来源字段区分原创与转载",
+          "access_notes": "记者见面会、新闻发布会、讲话、短片和转载稿不收录；页面标明其他媒体来源时追溯到原始媒体"
+        },
+        {
+          "id": "fanpodcast-xiaoyuzhou",
+          "name": "FanPodcast今夜只放空",
+          "type": "podcast_archive",
+          "url": "https://www.xiaoyuzhoufm.com/podcast/68e8b0335d31a21a7c37d852",
+          "owner": "伊周Fantastic Man",
+          "source_role": "program_producer",
+          "content": "《伊周Fantastic Man》制作和发布的完整文化人物对谈音频",
+          "search_method": "在节目主页及Fantastic Man官方视频号、微博和小红书中搜索王宁、泡泡玛特及相关对谈",
+          "access_notes": "同场转载视频和剪辑片段不单独收录，优先保留节目制作方发布的完整音频或完整视频"
         }
       ]
     }

@@ -1,4 +1,38 @@
 {
   "schema_version": 1,
-  "entries": []
+  "entries": [
+    {
+      "id": "dedup-1786591496318-36231e",
+      "processed_at": "2026-08-13T03:24:56.318Z",
+      "action": "added_new",
+      "candidate_url": "https://www.xiaoyuzhoufm.com/episode/68504d514abe6e29cb7745ad",
+      "matched_interview_id": "wang-ning-2025-06-16-9b0249f7",
+      "confidence": 1,
+      "reasons": [
+        "未发现达到自动合并阈值的已有访谈"
+      ]
+    },
+    {
+      "id": "dedup-1786591711292-6e14c9",
+      "processed_at": "2026-08-13T03:28:31.292Z",
+      "action": "added_new",
+      "candidate_url": "https://bj.people.com.cn/n2/2025/0721/c14540-41297558.html",
+      "matched_interview_id": "wang-ning-2025-07-21-886ad5a6",
+      "confidence": 1,
+      "reasons": [
+        "未发现达到自动合并阈值的已有访谈"
+      ]
+    },
+    {
+      "id": "dedup-1786592298804-08a938",
+      "processed_at": "2026-08-13T03:38:18.804Z",
+      "action": "added_new",
+      "candidate_url": "https://www.xiaoyuzhoufm.com/episode/68e8cb21525f51df389cb132",
+      "matched_interview_id": "wang-ning-2025-10-10-9e2147c7",
+      "confidence": 1,
+      "reasons": [
+        "未发现达到自动合并阈值的已有访谈"
+      ]
+    }
+  ]
 }
