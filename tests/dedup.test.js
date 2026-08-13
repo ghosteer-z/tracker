@@ -95,6 +95,45 @@ test("不同节目自动作为新访谈收录", () => {
   assert.equal(result.interviews.length, 2);
 });
 
+test("中等相似度候选暂停并要求人工确认", () => {
+  const result = processCandidate(
+    { interviews: [interview()], channelsByPerson: knownChannels },
+    candidate({
+      title: "张扬对话王宁：中国潮玩走向全球",
+      program: "扬声 第2季",
+      other_participants: ["张扬"],
+      published_date: "2026-03-10"
+    })
+  );
+  assert.equal(result.entry.action, "needs_review");
+  assert.equal(result.interviews.length, 1);
+});
+
+test("人工可以明确指定新增或合并", () => {
+  const existing = interview();
+  const ambiguous = candidate({
+    title: "张扬对话王宁：中国潮玩走向全球",
+    program: "扬声 第2季",
+    other_participants: ["张扬"],
+    published_date: "2026-03-10"
+  });
+  const added = processCandidate(
+    { interviews: [existing], channelsByPerson: knownChannels },
+    ambiguous,
+    { forceNew: true }
+  );
+  assert.equal(added.entry.action, "added_new");
+  assert.equal(added.interviews.length, 2);
+
+  const merged = processCandidate(
+    { interviews: [existing], channelsByPerson: knownChannels },
+    ambiguous,
+    { mergeWith: existing.id }
+  );
+  assert.equal(merged.interviews.length, 1);
+  assert.equal(merged.entry.matched_interview_id, existing.id);
+});
+
 test("不完整或排除类型不进入访谈清单", () => {
   const incomplete = candidate({
     screening: {

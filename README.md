@@ -79,8 +79,15 @@
 # 检查全部数据及关联关系
 npm.cmd run validate
 
+# 先生成某个人物的可信域名定向查询和全网补充查询清单
+npm.cmd run search-plan -- wang-ning --from 2026-08-14 --to 2026-12-31
+
 # 导入一条候选访谈并自动筛选、去重
 npm.cmd run import -- <候选访谈.json>
+
+# 对中等相似候选人工确认后，明确作为新访谈或合并到已有访谈
+npm.cmd run import -- <候选访谈.json> --force-new
+npm.cmd run import -- <候选访谈.json> --merge-with <已有访谈id>
 
 # 生成指定人物的报告
 npm.cmd run report -- wang-ning
@@ -98,6 +105,7 @@ npm.cmd test
 - `data/people.json` 是人物表：保存人物的标准姓名和检索别名。以后增加人物只需在这里新增一条。
 - `data/channels.json` 是按人物分组的一手来源地图：同一个人的来源连续放在一起，记录采访媒体、节目制作方、活动主办方或人物官方渠道，以及每个渠道怎么查。新增来源时只追加到对应人物组末尾，不自动重排。
 - `data/search-log.json` 是检索账本：每次检索写明人物、检索方式、查询词和时间范围，并记录查了什么、处理了多少结果、下次从哪里继续。
+- `data/reviewed-candidates.json` 是重要排除候选的轻量记录：只保存真正进入判断、但因不完整、非一手或属于排除类型而未收录的结果，避免下次重复核验。
 - `data/interviews.json` 仍然只保存最终确认的访谈，不保存检索过程、转载或候选线索。
 
 每个人物的来源条目直接保存来源角色，目前只保留四种：
@@ -112,7 +120,7 @@ npm.cmd test
 检索状态只有三种：
 
 - `partial`：只查了部分范围，下次还要继续；
-- `completed`：账本所写的范围已经完整检查；
+- `completed`：计划查询已全部执行，并且结果已经耗尽或达到“连续两页没有新候选”的停止条件；
 - `blocked`：受到登录、页面或其他限制，当前无法继续。
 
 检索方式只有两种：
@@ -121,6 +129,10 @@ npm.cmd test
 - `broad_web`：在中文平台或全网进行补充检索，`channel_id` 填 `null`，并在 `platforms` 中写明实际检查的平台。
 
 每条账本还用 `queries` 保存实际使用的检索词，用 `date_range` 保存本次覆盖的发布时间范围；无法限定时间时填 `null`。`counts` 分别统计看过的结果、形成的候选，以及候选中新增、合并重复和排除的数量。账本只描述检索过程，最终访谈仍然只进入 `interviews.json`。
+
+标记为 `completed` 时必须填写 `completion_check`：`planned_queries_executed` 和 `stopping_rule_met` 都必须为 `true`，`methods_used` 必须说明实际使用了站内搜索、限定域名搜索或平台搜索中的哪些方式。遇到登录、robots、分页或公开索引限制而无法达到停止条件时，只能标记为 `partial` 或 `blocked`。
+
+日常检索先运行 `npm run search-plan -- <person_id>`。程序会从人物标准名、别名和渠道 URL 自动生成两组清单：第一组是每个可信来源域名的 `site:` 定向查询，第二组是完成定向搜索后使用的全网补充查询。它只生成计划，不自动访问网页；执行者仍需核验原始发布者、完整性和内容类型。
 
 检索时间范围是每次任务的运行参数，不是来源清单的固定属性。本轮王宁 MVP 的可信来源定向检索和全网补充检索统一覆盖 `2025-01-01` 至实际检索日；范围外内容可以作为线索看到，但不继续核验、不进入本轮候选，也不能据此宣称更早历史已经查完。
 
@@ -144,8 +156,9 @@ npm.cmd run import -- <候选访谈.json>
 - 完整度相同时，优先保留已经登记在该人物 `channels.json` 清单中的来源；
 - 两边都已登记或都未登记时保留现有来源，避免反复替换；
 - 自动判断经过写入 `data/dedup-log.json`，便于追溯。
+- 被明确排除的重要候选还会写入 `data/reviewed-candidates.json`，下次搜索时可以直接识别已经判断过的链接。
 
-自动合并会采用保守策略：只有相似度达到明确阈值才合并；无法证明重复或时间相隔超过90天时按新访谈收录，以降低错误合并造成漏收的风险。`channels.json` 不设置来源优先级，清单内来源一律按可信来源处理。
+自动合并会采用保守策略：相似度达到 `0.85` 才自动合并，`0.65` 至 `0.85` 之间暂停写入并提示人工确认，低于 `0.65` 时作为新访谈；时间相隔超过90天还会进一步压低相似度。人工确认后使用 `--force-new` 或 `--merge-with <已有访谈id>` 明确处理。`channels.json` 不设置来源优先级，清单内来源一律按可信来源处理。
 
 ## 内容整理和核验
 
@@ -174,11 +187,13 @@ tracker/
 │  ├─ people.json                人物及检索别名
 │  ├─ channels.json              按人物分组的可信来源地图
 │  ├─ search-log.json            定向检索与全网检索账本
+│  ├─ reviewed-candidates.json    已人工判断的重要排除候选
 │  ├─ interviews.json            去重后的最终访谈及内容摘要
 │  └─ dedup-log.json             自动收录和去重判定记录
 ├─ examples/                     候选访谈输入示例
 ├─ scripts/
 │  ├─ validate-data.js           检查数据格式和跨文件关联
+│  ├─ generate-search-plan.js    生成人物定向与全网搜索计划
 │  ├─ dedup-core.js              判断同一事件并选择最佳来源
 │  ├─ import-interview.js         导入候选并写入结果与日志
 │  └─ generate-report.js         按日期倒序生成指定人物报告

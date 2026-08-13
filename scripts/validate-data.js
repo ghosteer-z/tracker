@@ -66,6 +66,7 @@ const peopleData = readJson("people.json");
 const channelData = readJson("channels.json");
 const searchData = readJson("search-log.json");
 const dedupData = readJson("dedup-log.json");
+const reviewedCandidateData = readJson("reviewed-candidates.json");
 
 for (const [name, data, listField, schemaVersion] of [
   ["interviews.json", interviewData, "interviews", 1],
@@ -73,6 +74,7 @@ for (const [name, data, listField, schemaVersion] of [
   ["channels.json", channelData, "people", 1],
   ["search-log.json", searchData, "searches", 2],
   ["dedup-log.json", dedupData, "entries", 1]
+  , ["reviewed-candidates.json", reviewedCandidateData, "entries", 1]
 ]) {
   if (data.schema_version !== schemaVersion) errors.push(`${name}: schema_version 必须是 ${schemaVersion}`);
   if (!Array.isArray(data[listField])) errors.push(`${name}: ${listField} 必须是数组`);
@@ -263,6 +265,23 @@ for (const [index, search] of (searchData.searches || []).entries()) {
   }
   if (!isDate(search.checked_at)) errors.push(`${label}: checked_at 必须是有效的 YYYY-MM-DD 日期`);
   if (!allowedSearchStatuses.has(search.status)) errors.push(`${label}: status 只能是 partial、completed 或 blocked`);
+  if (search.status === "completed") {
+    const completion = search.completion_check;
+    if (!completion || typeof completion !== "object" || Array.isArray(completion)) {
+      errors.push(`${label}: completed 检索必须填写 completion_check`);
+    } else {
+      if (completion.planned_queries_executed !== true) {
+        errors.push(`${label}: completed 检索必须确认 planned_queries_executed`);
+      }
+      if (completion.stopping_rule_met !== true) {
+        errors.push(`${label}: completed 检索必须确认 stopping_rule_met`);
+      }
+      if (!Array.isArray(completion.methods_used) || completion.methods_used.length === 0
+        || completion.methods_used.some(item => typeof item !== "string" || item.trim() === "")) {
+        errors.push(`${label}: completed 检索必须在 completion_check.methods_used 写明实际方法`);
+      }
+    }
+  }
   const counts = search.counts;
   const countFields = ["reviewed_results", "candidates_found", "added_new", "merged_duplicates", "excluded"];
   if (!counts || typeof counts !== "object" || Array.isArray(counts)) {
@@ -312,6 +331,28 @@ for (const [index, entry] of (dedupData.entries || []).entries()) {
   if (entry.action !== "excluded" && !interviewIds.has(entry.matched_interview_id)) {
     errors.push(`${label}: matched_interview_id 找不到对应访谈`);
   }
+}
+
+const reviewedCandidateIds = new Map();
+const reviewedCandidateUrls = new Map();
+for (const [index, entry] of (reviewedCandidateData.entries || []).entries()) {
+  const label = `已判断候选第 ${index + 1} 条${entry.id ? ` (${entry.id})` : ""}`;
+  for (const field of ["id", "person_id", "url", "title", "decision", "reviewed_at"]) {
+    requireString(entry, field, label);
+  }
+  checkUniqueId(entry.id, reviewedCandidateIds, label);
+  if (!personIds.has(entry.person_id)) errors.push(`${label}: person_id 找不到对应人物`);
+  if (!isUrl(entry.url)) errors.push(`${label}: url 必须是有效链接`);
+  const candidateKey = `${entry.person_id}|${entry.url}`;
+  if (reviewedCandidateUrls.has(candidateKey)) {
+    errors.push(`${label}: 与 ${reviewedCandidateUrls.get(candidateKey)} 重复判断同一链接`);
+  } else reviewedCandidateUrls.set(candidateKey, label);
+  if (entry.decision !== "excluded") errors.push(`${label}: decision 当前只能是 excluded`);
+  if (!Array.isArray(entry.reasons) || entry.reasons.length === 0
+    || entry.reasons.some(reason => typeof reason !== "string" || reason.trim() === "")) {
+    errors.push(`${label}: reasons 必须是非空文字数组`);
+  }
+  if (!isDate(entry.reviewed_at)) errors.push(`${label}: reviewed_at 必须是有效日期`);
 }
 
 if (errors.length) {

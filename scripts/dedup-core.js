@@ -159,13 +159,18 @@ function compareEvents(existing, candidate) {
   return { score: Math.min(score, 1), reasons };
 }
 
-function findDuplicate(interviews, candidate) {
+function findBestMatch(interviews, candidate) {
   let best = null;
   for (const existing of interviews) {
     const comparison = compareEvents(existing, candidate);
     if (!best || comparison.score > best.score) best = { existing, ...comparison };
   }
-  return best && best.score >= 0.72 ? best : null;
+  return best;
+}
+
+function findDuplicate(interviews, candidate) {
+  const best = findBestMatch(interviews, candidate);
+  return best && best.score >= 0.85 ? best : null;
 }
 
 function isKnownChannel(channelsByPerson, personId, channelId) {
@@ -220,7 +225,7 @@ function cleanCandidate(candidate) {
   return result;
 }
 
-function processCandidate(state, rawCandidate) {
+function processCandidate(state, rawCandidate, options = {}) {
   const failures = screenCandidate(rawCandidate);
   const candidateUrl = rawCandidate.source?.url || null;
   if (failures.length) {
@@ -237,7 +242,41 @@ function processCandidate(state, rawCandidate) {
   }
 
   const candidate = cleanCandidate(rawCandidate);
-  const duplicate = findDuplicate(state.interviews, candidate);
+  if (options.forceNew) {
+    return {
+      interviews: [...state.interviews, candidate],
+      entry: {
+        action: "added_new",
+        candidate_url: candidate.source.url,
+        matched_interview_id: candidate.id,
+        confidence: 1,
+        reasons: ["人工确认作为新访谈收录"]
+      }
+    };
+  }
+
+  let duplicate;
+  if (options.mergeWith) {
+    const existing = state.interviews.find(item => item.id === options.mergeWith);
+    if (!existing) throw new Error(`找不到指定合并访谈 ${options.mergeWith}`);
+    const comparison = compareEvents(existing, candidate);
+    duplicate = { existing, ...comparison, reasons: [...comparison.reasons, "人工指定合并"] };
+  } else {
+    const best = findBestMatch(state.interviews, candidate);
+    if (best && best.score >= 0.65 && best.score < 0.85) {
+      return {
+        interviews: state.interviews,
+        entry: {
+          action: "needs_review",
+          candidate_url: candidate.source.url,
+          matched_interview_id: best.existing.id,
+          confidence: Number(best.score.toFixed(3)),
+          reasons: [...best.reasons, "相似度处于人工确认区间，未修改正式数据"]
+        }
+      };
+    }
+    duplicate = best && best.score >= 0.85 ? best : null;
+  }
   if (!duplicate) {
     return {
       interviews: [...state.interviews, candidate],
@@ -271,6 +310,7 @@ function processCandidate(state, rawCandidate) {
 module.exports = {
   compareEvents,
   findDuplicate,
+  findBestMatch,
   processCandidate,
   chooseSource,
   validateCandidateShape

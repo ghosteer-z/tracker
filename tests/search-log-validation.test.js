@@ -35,6 +35,11 @@ function broadWebSearch() {
     date_range: null,
     scope: "验证中文全网补充检索的账本格式",
     status: "completed",
+    completion_check: {
+      planned_queries_executed: true,
+      stopping_rule_met: true,
+      methods_used: ["web_search"]
+    },
     counts: {
       reviewed_results: 3,
       candidates_found: 1,
@@ -55,6 +60,18 @@ test("全网补充检索可以记录多个平台且不需要 channel_id", t => {
   });
 
   assert.equal(result.status, 0, result.stderr);
+});
+
+test("completed 检索必须记录完成检查", t => {
+  const search = broadWebSearch();
+  delete search.completion_check;
+  const root = createFixture(t, search);
+  const result = spawnSync(process.execPath, [path.join(root, "scripts", "validate-data.js")], {
+    encoding: "utf8"
+  });
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /completed 检索必须填写 completion_check/);
 });
 
 test("全网补充检索会拦截缺失平台和不自洽的数量", t => {
