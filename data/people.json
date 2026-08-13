@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "people": [
+    {
+      "id": "jensen-huang",
+      "name": "黄仁勋",
+      "aliases": [
+        "Jensen Huang",
+        "Jen-Hsun Huang"
+      ]
+    },
+    {
+      "id": "wang-ning",
+      "name": "王宁",
+      "aliases": [
+        "泡泡玛特王宁",
+        "POP MART Wang Ning"
+      ]
+    }
+  ]
+}

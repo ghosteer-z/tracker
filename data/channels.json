@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "people": [
+    {
+      "person_id": "jensen-huang",
+      "channels": [
+        {
+          "id": "nvidia-on-demand",
+          "name": "NVIDIA On-Demand",
+          "type": "video_library",
+          "url": "https://www.nvidia.com/en-us/on-demand/",
+          "owner": "NVIDIA",
+          "source_role": "subject_official",
+          "content": "GTC及其他活动的完整对谈、圆桌和炉边谈话，部分页面带完整逐字稿",
+          "search_method": "使用Advanced Search按Jensen Huang及Jen-Hsun Huang筛选，再按活动和日期逐页检查",
+          "access_notes": "页面依赖JavaScript；部分内容可能需要免费NVIDIA账号"
+        },
+        {
+          "id": "nvidia-youtube",
+          "name": "NVIDIA YouTube",
+          "type": "youtube",
+          "url": "https://www.youtube.com/@NVIDIA",
+          "owner": "NVIDIA",
+          "source_role": "subject_official",
+          "content": "黄仁勋参加的完整对谈、活动回放和官方视频",
+          "search_method": "在频道内搜索Jensen Huang及Jen-Hsun Huang，并结合interview、conversation、fireside chat、panel逐项检查",
+          "access_notes": "需要区分完整谈话、主题演讲和剪辑片段"
+        },
+        {
+          "id": "nvidia-developer-youtube",
+          "name": "NVIDIA Developer YouTube",
+          "type": "youtube",
+          "url": "https://www.youtube.com/@NVIDIADeveloper",
+          "owner": "NVIDIA",
+          "source_role": "subject_official",
+          "content": "开发者活动、技术对谈和历史GTC内容",
+          "search_method": "在频道内搜索Jensen Huang及Jen-Hsun Huang，再检查相关播放列表",
+          "access_notes": "早期内容可能使用Jen-Hsun Huang这一英文名"
+        },
+        {
+          "id": "nvidia-ai-podcast",
+          "name": "NVIDIA AI Podcast",
+          "type": "podcast_archive",
+          "url": "https://blogs.nvidia.com/blog/category/generative-ai/the-ai-podcast/",
+          "owner": "NVIDIA",
+          "source_role": "subject_official",
+          "content": "NVIDIA官方长音频访谈，部分节目附官方文字底稿",
+          "search_method": "在节目存档中搜索Jensen Huang及Jen-Hsun Huang，并逐页检查标题、嘉宾和底稿",
+          "access_notes": "该节目主要采访行业嘉宾，需确认黄仁勋是否实际参与"
+        },
+        {
+          "id": "nvidia-blog",
+          "name": "NVIDIA Blog",
+          "type": "official_archive",
+          "url": "https://blogs.nvidia.com/",
+          "owner": "NVIDIA",
+          "source_role": "subject_official",
+          "content": "官方活动报道和访谈入口，可用于发现完整视频或On-Demand页面",
+          "search_method": "搜索Jensen Huang及Jen-Hsun Huang并组合interview、conversation、fireside chat、panel，随后追到完整来源",
+          "access_notes": "只有摘要的文章不能直接进入访谈清单"
+        }
+      ]
+    },
+    {
+      "person_id": "wang-ning",
+      "channels": []
+    }
+  ]
+}

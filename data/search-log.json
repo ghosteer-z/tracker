@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "searches": [
+    {
+      "id": "nvidia-on-demand-2026-08-13-sample",
+      "person_id": "jensen-huang",
+      "channel_id": "nvidia-on-demand",
+      "checked_at": "2026-08-13",
+      "query": "Jensen Huang；试跑GTC Digital Spring 2023炉边谈话",
+      "scope": "只核验已定位到的一场2023年GTC对谈，不代表频道历史内容已全部检索",
+      "status": "partial",
+      "reviewed_count": 1,
+      "accepted_interview_ids": [
+        "jensen-huang-2023-03-22-gtc-ilya-sutskever"
+      ],
+      "excluded_count": 0,
+      "next_step": "使用Advanced Search按Jensen Huang筛选，确定总结果数和分页后从最新内容向前检查",
+      "notes": "确认官方页面提供约53分钟完整视频和可搜索逐字稿；互动搜索页依赖JavaScript，试跑未宣称全量覆盖"
+    }
+  ]
+}

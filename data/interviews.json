@@ -3,7 +3,7 @@
   "interviews": [
     {
       "id": "wang-ning-2026-01-23-yangsheng-s02e03",
-      "person": "王宁",
+      "person_id": "wang-ning",
       "title": "张扬对话王宁：中国潮玩为何能风靡全球",
       "program": "扬声 第2季 第3集",
       "interview_type": "one_on_one",
@@ -26,7 +26,7 @@
     },
     {
       "id": "wang-ning-2026-03-28-cctv-dialogue",
-      "person": "王宁",
+      "person_id": "wang-ning",
       "title": "一场关于快乐的商业革命",
       "program": "央视《对话》",
       "interview_type": "one_on_one",
@@ -47,7 +47,7 @@
     },
     {
       "id": "wang-ning-2026-05-06-high-energy-vol-215",
-      "person": "王宁",
+      "person_id": "wang-ning",
       "title": "再访王宁：与王宁聊他的2025年以及泡泡玛特的未来",
       "program": "高能量 Vol.215",
       "interview_type": "group_conversation",
@@ -67,6 +67,30 @@
         "2025年复盘",
         "组织建设",
         "泡泡玛特未来战略"
+      ]
+    },
+    {
+      "id": "jensen-huang-2023-03-22-gtc-ilya-sutskever",
+      "person_id": "jensen-huang",
+      "title": "Fireside Chat with Ilya Sutskever and Jensen Huang: AI Today and Vision of the Future",
+      "program": "GTC Digital Spring 2023",
+      "interview_type": "one_on_one",
+      "interviewers": [
+        "黄仁勋"
+      ],
+      "published_date": "2023-03-22",
+      "event_date": null,
+      "source": {
+        "type": "transcript",
+        "url": "https://www.nvidia.com/en-us/on-demand/session/gtcspring23-s52092/",
+        "publisher": "NVIDIA On-Demand",
+        "language": "en-US"
+      },
+      "topics": [
+        "GPT-4",
+        "ChatGPT",
+        "深度学习",
+        "人工智能未来"
       ]
     }
   ]

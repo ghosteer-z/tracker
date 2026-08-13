@@ -4,7 +4,6 @@
   "private": true,
   "description": "A minimal ledger for complete, primary-source interviews.",
   "scripts": {
-    "validate": "node scripts/validate-interviews.js"
+    "validate": "node scripts/validate-data.js"
   }
 }
-
