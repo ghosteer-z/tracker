@@ -79,8 +79,14 @@
 # 检查全部数据及关联关系
 npm.cmd run validate
 
-# 先生成某个人物的可信域名定向查询和全网补充查询清单
-npm.cmd run search-plan -- wang-ning --from 2026-08-14 --to 2026-12-31
+# 生成可勾选的 Markdown 搜索清单并保存到文件
+npm.cmd run search-plan -- wang-ning --from 2026-08-14 --to 2026-12-31 --output reports/wang-ning-search-plan.md
+
+# 需要机器读取时仍可输出 JSON
+npm.cmd run search-plan -- wang-ning --format json
+
+# 在制作完整候选 JSON 前，手工登记一个重要排除结果
+npm.cmd run review -- --person wang-ning --url <链接> --title <标题> --reason incomplete
 
 # 导入一条候选访谈并自动筛选、去重
 npm.cmd run import -- <候选访谈.json>
@@ -88,6 +94,7 @@ npm.cmd run import -- <候选访谈.json>
 # 对中等相似候选人工确认后，明确作为新访谈或合并到已有访谈
 npm.cmd run import -- <候选访谈.json> --force-new
 npm.cmd run import -- <候选访谈.json> --merge-with <已有访谈id>
+npm.cmd run import -- <候选访谈.json> --reconsider
 
 # 生成指定人物的报告
 npm.cmd run report -- wang-ning
@@ -117,6 +124,8 @@ npm.cmd test
 
 `channels.json` 登记的是具体原始发布者或其内容档案，不登记“哔哩哔哩”“小宇宙”“微信”这类通用平台。只有能够核验发布者身份、确实可能提供完整一手谈话内容，并有稳定检索入口的来源才加入。来源清单用于提高发现概率，不代表其中每条内容都会自动收录；具体内容仍需通过完整、一手、谈话形式和排除类型检查。
 
+默认情况下，搜索计划从渠道 `url` 提取一个域名。若同一来源还需要检查电子报、视频子站等其他域名，可以增加可选的 `search_domains` 数组；生成器会逐个域名生成查询。`url` 仍然表示渠道入口，`search_domains` 只控制定向搜索范围。
+
 检索状态只有三种：
 
 - `partial`：只查了部分范围，下次还要继续；
@@ -132,7 +141,7 @@ npm.cmd test
 
 标记为 `completed` 时必须填写 `completion_check`：`planned_queries_executed` 和 `stopping_rule_met` 都必须为 `true`，`methods_used` 必须说明实际使用了站内搜索、限定域名搜索或平台搜索中的哪些方式。遇到登录、robots、分页或公开索引限制而无法达到停止条件时，只能标记为 `partial` 或 `blocked`。
 
-日常检索先运行 `npm run search-plan -- <person_id>`。程序会从人物标准名、别名和渠道 URL 自动生成两组清单：第一组是每个可信来源域名的 `site:` 定向查询，第二组是完成定向搜索后使用的全网补充查询。它只生成计划，不自动访问网页；执行者仍需核验原始发布者、完整性和内容类型。
+日常检索先运行 `npm run search-plan -- <person_id>`。默认输出可勾选的 Markdown 清单，使用 `--output <路径>` 可以保存为工作文件，使用 `--format json` 可以保留机器可读输出。程序会从人物标准名、别名、渠道名称和搜索域名自动生成两组清单：第一组是每个可信来源域名的 `site:` 定向查询，第二组是完成定向搜索后使用的全网补充查询。它只生成计划，不自动访问网页；执行者仍需核验原始发布者、完整性和内容类型。
 
 检索时间范围是每次任务的运行参数，不是来源清单的固定属性。本轮王宁 MVP 的可信来源定向检索和全网补充检索统一覆盖 `2025-01-01` 至实际检索日；范围外内容可以作为线索看到，但不继续核验、不进入本轮候选，也不能据此宣称更早历史已经查完。
 
@@ -157,6 +166,8 @@ npm.cmd run import -- <候选访谈.json>
 - 两边都已登记或都未登记时保留现有来源，避免反复替换；
 - 自动判断经过写入 `data/dedup-log.json`，便于追溯。
 - 被明确排除的重要候选还会写入 `data/reviewed-candidates.json`，下次搜索时可以直接识别已经判断过的链接。
+
+搜索过程中若已经能确定结果不合格，不需要先制作完整候选 JSON，可以使用 `npm run review` 直接登记。排除原因代码包括 `not_primary`、`incomplete`、`not_conversation`、`excluded_event`、`person_not_participating`、`outside_date_range`、`duplicate_source` 和 `other`。导入程序会先检查同一人物下是否已有该规范化链接的排除记录；确需重新判断时使用 `--reconsider`，新结果会替换或移除旧判断。
 
 自动合并会采用保守策略：相似度达到 `0.85` 才自动合并，`0.65` 至 `0.85` 之间暂停写入并提示人工确认，低于 `0.65` 时作为新访谈；时间相隔超过90天还会进一步压低相似度。人工确认后使用 `--force-new` 或 `--merge-with <已有访谈id>` 明确处理。`channels.json` 不设置来源优先级，清单内来源一律按可信来源处理。
 
@@ -196,6 +207,7 @@ tracker/
 │  ├─ generate-search-plan.js    生成人物定向与全网搜索计划
 │  ├─ dedup-core.js              判断同一事件并选择最佳来源
 │  ├─ import-interview.js         导入候选并写入结果与日志
+│  ├─ review-candidate.js        手工登记重要排除候选
 │  └─ generate-report.js         按日期倒序生成指定人物报告
 ├─ tests/                        数据、检索、去重和报告自动测试
 ├─ reports/

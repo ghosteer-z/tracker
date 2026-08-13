@@ -157,6 +157,10 @@
           "name": "人民日报及人民日报海外版",
           "type": "official_archive",
           "url": "https://www.people.com.cn/",
+          "search_domains": [
+            "people.com.cn",
+            "paper.people.com.cn"
+          ],
           "owner": "人民日报社",
           "source_role": "interview_media",
           "content": "人民日报及人民日报海外版原创刊发的完整问答式人物专访",

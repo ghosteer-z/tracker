@@ -11,6 +11,16 @@ const allowedSourceRoles = new Set(["subject_official", "interview_media", "prog
 const allowedSummaryTypes = new Set(["editorial_paraphrase"]);
 const allowedEvidenceBases = new Set(["full_transcript", "full_video", "full_audio"]);
 const allowedVerificationStatuses = new Set(["verified", "partial"]);
+const allowedReviewReasonCodes = new Set([
+  "not_primary",
+  "incomplete",
+  "not_conversation",
+  "excluded_event",
+  "person_not_participating",
+  "outside_date_range",
+  "duplicate_source",
+  "other"
+]);
 const errors = [];
 
 function readJson(filename) {
@@ -212,6 +222,15 @@ for (const [groupIndex, group] of (channelData.people || []).entries()) {
     if (!allowedChannelTypes.has(channel.type)) errors.push(`${label}: 不支持的渠道类型 ${channel.type}`);
     if (!allowedSourceRoles.has(channel.source_role)) errors.push(`${label}: 不支持的来源角色 ${channel.source_role}`);
     if (!isUrl(channel.url)) errors.push(`${label}: url 必须是有效的 http(s) 链接`);
+    if (channel.search_domains !== undefined) {
+      if (!Array.isArray(channel.search_domains) || channel.search_domains.length === 0
+        || channel.search_domains.some(domain => typeof domain !== "string"
+          || !/^(?:[a-z0-9-]+\.)+[a-z]{2,}$/i.test(domain))) {
+        errors.push(`${label}: search_domains 必须是非空的有效域名数组`);
+      } else if (new Set(channel.search_domains).size !== channel.search_domains.length) {
+        errors.push(`${label}: search_domains 不能包含重复域名`);
+      }
+    }
     if (channelUrls.has(channel.url)) errors.push(`${label}: url 与 ${channelUrls.get(channel.url)} 重复`);
     else channelUrls.set(channel.url, label);
   }
@@ -351,6 +370,10 @@ for (const [index, entry] of (reviewedCandidateData.entries || []).entries()) {
   if (!Array.isArray(entry.reasons) || entry.reasons.length === 0
     || entry.reasons.some(reason => typeof reason !== "string" || reason.trim() === "")) {
     errors.push(`${label}: reasons 必须是非空文字数组`);
+  }
+  if (!Array.isArray(entry.reason_codes) || entry.reason_codes.length === 0
+    || entry.reason_codes.some(code => !allowedReviewReasonCodes.has(code))) {
+    errors.push(`${label}: reason_codes 必须使用受支持的排除原因代码`);
   }
   if (!isDate(entry.reviewed_at)) errors.push(`${label}: reviewed_at 必须是有效日期`);
 }

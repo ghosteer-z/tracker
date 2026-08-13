@@ -313,5 +313,6 @@ module.exports = {
   findBestMatch,
   processCandidate,
   chooseSource,
+  sourceIdentity,
   validateCandidateShape
 };

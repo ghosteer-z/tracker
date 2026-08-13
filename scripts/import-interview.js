@@ -1,11 +1,12 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { processCandidate, validateCandidateShape } = require("./dedup-core");
+const { processCandidate, sourceIdentity, validateCandidateShape } = require("./dedup-core");
 
 const root = path.join(__dirname, "..");
 const args = process.argv.slice(2);
 const candidatePath = args.find(arg => !arg.startsWith("--"));
 const forceNew = args.includes("--force-new");
+const reconsider = args.includes("--reconsider");
 const mergeIndex = args.indexOf("--merge-with");
 const mergeWith = mergeIndex >= 0 ? args[mergeIndex + 1] : null;
 
@@ -46,6 +47,16 @@ if (shapeErrors.length) {
   for (const error of shapeErrors) console.error(`- ${error}`);
   process.exit(1);
 }
+const previousReview = reviewedCandidatesData.entries.find(entry =>
+  entry.person_id === candidate.person_id
+  && sourceIdentity(entry.url) === sourceIdentity(candidate.source.url)
+);
+if (previousReview && !reconsider) {
+  console.error(`该链接已于 ${previousReview.reviewed_at} 被排除，正式数据未改动：`);
+  for (const reason of previousReview.reasons) console.error(`- ${reason}`);
+  console.error("确认需要重新判断时，请增加 --reconsider");
+  process.exit(2);
+}
 const channelsByPerson = new Map(
   channelData.people.map(group => [group.person_id, new Set(group.channels.map(channel => channel.id))])
 );
@@ -77,20 +88,31 @@ if (result.entry.action === "needs_review") {
 
 writeJson(interviewsPath, { ...interviewData, interviews: result.interviews });
 writeJson(logPath, { ...logData, entries: [...logData.entries, logEntry] });
+const retainedReviews = previousReview && reconsider
+  ? reviewedCandidatesData.entries.filter(entry => entry.id !== previousReview.id)
+  : reviewedCandidatesData.entries;
 if (result.entry.action === "excluded") {
+  const reasonCodes = [];
+  if (candidate.screening.is_primary !== true) reasonCodes.push("not_primary");
+  if (candidate.screening.is_complete !== true) reasonCodes.push("incomplete");
+  if (candidate.screening.is_conversation !== true) reasonCodes.push("not_conversation");
+  if (candidate.screening.is_excluded_event === true) reasonCodes.push("excluded_event");
   const reviewedEntry = {
     id: `reviewed-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
     person_id: candidate.person_id,
     url: candidate.source.url,
     title: candidate.title,
     decision: "excluded",
+    reason_codes: reasonCodes,
     reasons: result.entry.reasons,
     reviewed_at: new Date().toISOString().slice(0, 10)
   };
   writeJson(reviewedCandidatesPath, {
     ...reviewedCandidatesData,
-    entries: [...reviewedCandidatesData.entries, reviewedEntry]
+    entries: [...retainedReviews, reviewedEntry]
   });
+} else if (previousReview && reconsider) {
+  writeJson(reviewedCandidatesPath, { ...reviewedCandidatesData, entries: retainedReviews });
 }
 
 console.log(`${logEntry.action}: ${logEntry.matched_interview_id || "未收录"}`);

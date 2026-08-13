@@ -6,6 +6,7 @@
   "scripts": {
     "validate": "node scripts/validate-data.js",
     "import": "node scripts/import-interview.js",
+    "review": "node scripts/review-candidate.js",
     "search-plan": "node scripts/generate-search-plan.js",
     "report": "node scripts/generate-report.js",
     "test": "node --test tests/*.test.js"
