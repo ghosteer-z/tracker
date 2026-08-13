@@ -54,3 +54,22 @@ test("报告只包含目标人物并按发布日期倒序排列", () => {
   assert.ok(report.indexOf("较晚访谈") < report.indexOf("较早访谈"));
   assert.doesNotMatch(report, /不应出现/);
 });
+
+test("报告只展示已完成检索窗口内的访谈", () => {
+  const report = buildReport({
+    person,
+    interviews: [
+      { ...baseInterview, id: "inside", published_date: "2025-06-01", title: "窗口内访谈" },
+      { ...baseInterview, id: "outside", published_date: "2024-12-31", title: "窗口外访谈" }
+    ],
+    searches: [{
+      person_id: person.id,
+      status: "completed",
+      search_type: "broad_web",
+      checked_at: "2026-08-13",
+      date_range: { from: "2025-01-01", to: "2026-08-13" }
+    }]
+  });
+  assert.match(report, /窗口内访谈/);
+  assert.doesNotMatch(report, /窗口外访谈/);
+});

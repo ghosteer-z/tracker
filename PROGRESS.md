@@ -69,3 +69,17 @@
 这一步继续优化人工搜索的实际执行体验，把原先主要面向程序读取的搜索计划升级为默认输出可勾选的 Markdown 工作清单；清单按可信来源逐项列出限定域名查询、完成条件、结果统计空位和受限页面处理要求，最后再列出全网补充查询，并可通过 `--output` 直接保存为本轮搜索文件，仍可使用 `--format json` 获取原有机器可读结果。渠道新增可选的 `search_domains` 字段，用于覆盖同一来源的主站、电子报或内容子域名；人民日报来源首先登记了 `people.com.cn` 和 `paper.people.com.cn` 两个搜索域名，未配置该字段的渠道继续自动使用入口 URL 的域名。
 
 这一步还新增 `scripts/review-candidate.js` 和 `npm run review`，让执行者在搜索阶段即可用固定原因代码登记明显不合格但值得留痕的候选，不再必须先制作完整候选 JSON；导入流程会按人物和规范化 URL 检查历史排除记录并提示原判断，需要重审时使用 `--reconsider`，重审后的新结果会替换或移除旧记录。产出成果包括可直接执行的 Markdown 搜索清单、多域名定向搜索、手工排除命令、历史判断复用与重审机制，以及对应的自动测试和数据校验；搜索仍由人工执行和核验，没有增加爬虫或后台系统。
+
+### 第三步：按渠道类型精简搜索查询
+
+这一步把原有“所有姓名和所有意图词完全组合”的搜索计划改为按 `youtube`、`video_library`、`podcast_archive` 和 `official_archive` 分别选择访谈、完整视频、播客、炉边谈话或底稿等高价值意图；每个搜索目标通常只生成5至6条查询，标准姓名必查、最多两个别名补查，并通过人物 `search_qualifiers` 中的 `NVIDIA`、`泡泡玛特` 等身份词降低重名噪声。黄仁勋试跑进一步发现同一域名下不同YouTube频道会产生相同查询，因此渠道支持可选 `search_targets`，使用带频道路径的限定目标区分NVIDIA主频道、NVIDIA Developer和Microsoft频道。产出成果包括精简且按渠道类型变化的查询生成规则、身份限定词、频道路径搜索目标以及中英文人物自动测试。
+
+### 第四步：用黄仁勋完成2025年后流程试跑
+
+这一步统一把人物 `tracking_from` 设为 `2025-01-01`，搜索计划、检索账本和报告均继承该起点；原有2023年黄仁勋样本保留为MVP历史验证数据，但不进入当前搜索覆盖和正式报告。试跑逐一检查NVIDIA On-Demand、NVIDIA与NVIDIA Developer YouTube、NVIDIA AI Podcast和NVIDIA Blog，再执行中英文全网补充；NVIDIA自有渠道大量结果为keynote、special address或摘要报道，最终从On-Demand新增GTC 2025 Quantum Day两小时多人对谈，并使用NVIDIA Developer同场视频验证自动去重和稳定来源保留。全网补充发现并登记World Economic Forum、Milken Institute、Microsoft YouTube和CNA Correspondent四个新可信来源，新增Davos 2026对谈、Milken Global Conference 2025底稿、Microsoft Build 2025视频和CNA 2026专访四场内容。
+
+本轮最终在2025年后收录5场黄仁勋访谈，生成 `reports/jensen-huang.md` 和执行清单 `reports/jensen-huang-search-plan.md`，并将4个高频主题演讲或摘要报道登记为排除项以避免重复判断。由于公开检索仍发现部分尚待逐条核验的2025年后原始访谈线索，各定向渠道和全网记录诚实保持 `partial`，不宣称绝对完整覆盖；试跑验证了英文别名、多人对谈、新来源发现、同场跨平台去重、窗口筛选和报告生成的完整链路。
+
+### 第五步：自动生成检索账本记录
+
+这一步新增 `scripts/create-search-log.js` 和 `npm run search-log`，直接复用人物与渠道的精简搜索计划生成可信来源或全网检索记录，自动带入查询词、追踪起点、日期范围和唯一ID，并在写入前检查查看结果数、候选数、新增、合并与排除数量是否自洽；默认只输出可检查的JSON草稿，增加 `--append` 后才追加到正式账本，`completed` 还必须明确确认查询执行与停止条件。黄仁勋试跑用该命令写入9条定向记录和1条全网记录，过程中自动校验发现并修复了“空 `--accepted` 被误解析为下一个参数”的CLI边界。产出成果包括检索计划到检索账本的直接连接、草稿优先的安全写入方式、数量与完成状态检查，以及相关回归测试。

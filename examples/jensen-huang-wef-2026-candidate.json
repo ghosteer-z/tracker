@@ -1,0 +1,23 @@
+{
+  "person_id": "jensen-huang",
+  "title": "Conversation with Jensen Huang, President and CEO of NVIDIA",
+  "program": "World Economic Forum Annual Meeting 2026",
+  "interview_type": "one_on_one",
+  "other_participants": ["Laurence Fink"],
+  "published_date": "2026-01-21",
+  "event_date": "2026-01-21",
+  "source": {
+    "type": "transcript",
+    "url": "https://www.weforum.org/podcasts/meet-the-leader/episodes/conversation-with-jensen-huang-president-and-ceo-of-nvidia-5dd06ee82e/",
+    "publisher": "World Economic Forum",
+    "channel_id": "world-economic-forum",
+    "language": "en-US"
+  },
+  "topics": ["AI基础设施", "就业", "物理AI", "欧洲产业", "AI投资"],
+  "screening": {
+    "is_primary": true,
+    "is_complete": true,
+    "is_conversation": true,
+    "is_excluded_event": false
+  }
+}

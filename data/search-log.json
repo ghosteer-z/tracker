@@ -12,10 +12,7 @@
         "Jensen Huang",
         "GTC Digital Spring 2023 fireside chat"
       ],
-      "date_range": {
-        "from": "2023-01-01",
-        "to": "2023-12-31"
-      },
+      "date_range": null,
       "scope": "只核验已定位到的一场2023年GTC对谈，不代表频道历史内容已全部检索",
       "status": "partial",
       "counts": {
@@ -36,15 +33,39 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "tencent-video-documentary-youtube",
-      "platforms": ["YouTube"],
+      "platforms": [
+        "YouTube"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁", "泡泡玛特王宁", "POP MART Wang Ning"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁",
+        "泡泡玛特王宁",
+        "POP MART Wang Ning"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查频道内2025年至今可定位的王宁完整访谈",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["channel_search", "web_site_query"] },
-      "counts": { "reviewed_results": 1, "candidates_found": 1, "added_new": 0, "merged_duplicates": 1, "excluded": 0 },
-      "accepted_interview_ids": ["wang-ning-2026-01-23-yangsheng-s02e03"],
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "channel_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 1,
+        "candidates_found": 1,
+        "added_new": 0,
+        "merged_duplicates": 1,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "wang-ning-2026-01-23-yangsheng-s02e03"
+      ],
       "next_step": "下一次从2026-08-14之后的新上传继续",
       "notes": "确认《扬声》第2季第3集完整视频已在访谈清单中"
     },
@@ -53,15 +74,39 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "cctv-video",
-      "platforms": ["央视网"],
+      "platforms": [
+        "央视网"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁 泡泡玛特", "王宁 对话", "王宁 访谈"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁 泡泡玛特",
+        "王宁 对话",
+        "王宁 访谈"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查央视网2025年至今与泡泡玛特王宁有关的完整节目",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["site_search", "web_site_query"] },
-      "counts": { "reviewed_results": 2, "candidates_found": 2, "added_new": 0, "merged_duplicates": 1, "excluded": 1 },
-      "accepted_interview_ids": ["wang-ning-2026-03-28-cctv-dialogue"],
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "site_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 2,
+        "candidates_found": 2,
+        "added_new": 0,
+        "merged_duplicates": 1,
+        "excluded": 1
+      },
+      "accepted_interview_ids": [
+        "wang-ning-2026-03-28-cctv-dialogue"
+      ],
       "next_step": "下一次从2026-08-14之后的新节目继续",
       "notes": "《对话》42分37秒完整节目已收录；《焦点访谈》为专题报道且主要受访人不是王宁，排除"
     },
@@ -70,15 +115,38 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "high-energy-podcast",
-      "platforms": ["小宇宙"],
+      "platforms": [
+        "小宇宙"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁", "泡泡玛特"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁",
+        "泡泡玛特"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查《高能量》2025年至今的王宁完整音频",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["archive_search", "web_site_query"] },
-      "counts": { "reviewed_results": 1, "candidates_found": 1, "added_new": 0, "merged_duplicates": 1, "excluded": 0 },
-      "accepted_interview_ids": ["wang-ning-2026-05-06-high-energy-vol-215"],
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "archive_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 1,
+        "candidates_found": 1,
+        "added_new": 0,
+        "merged_duplicates": 1,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "wang-ning-2026-05-06-high-energy-vol-215"
+      ],
       "next_step": "下一次从2026-08-14之后的新节目继续",
       "notes": "确认Vol.215完整音频已在访谈清单中"
     },
@@ -87,15 +155,41 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "pop-mart-newsroom",
-      "platforms": ["泡泡玛特官网"],
+      "platforms": [
+        "泡泡玛特官网"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁", "专访", "对话", "访谈"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁",
+        "专访",
+        "对话",
+        "访谈"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查官网媒体新闻中2025年至今由公司确认的王宁访谈入口",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["archive_browse", "web_site_query"] },
-      "counts": { "reviewed_results": 2, "candidates_found": 2, "added_new": 0, "merged_duplicates": 2, "excluded": 0 },
-      "accepted_interview_ids": ["wang-ning-2026-03-28-cctv-dialogue", "wang-ning-2026-05-06-high-energy-vol-215"],
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "archive_browse",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 2,
+        "candidates_found": 2,
+        "added_new": 0,
+        "merged_duplicates": 2,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "wang-ning-2026-03-28-cctv-dialogue",
+        "wang-ning-2026-05-06-high-energy-vol-215"
+      ],
       "next_step": "下一次从2026-08-14之后新增的媒体新闻继续",
       "notes": "官网提供《对话》和李翔访谈发现入口；资产仍保留各自原始节目来源"
     },
@@ -104,15 +198,38 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "yangsheng-podcast",
-      "platforms": ["小宇宙"],
+      "platforms": [
+        "小宇宙"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁", "泡泡玛特"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁",
+        "泡泡玛特"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查《扬声》2025年至今的王宁完整音频",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["archive_search", "web_site_query"] },
-      "counts": { "reviewed_results": 1, "candidates_found": 1, "added_new": 0, "merged_duplicates": 1, "excluded": 0 },
-      "accepted_interview_ids": ["wang-ning-2026-01-23-yangsheng-s02e03"],
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "archive_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 1,
+        "candidates_found": 1,
+        "added_new": 0,
+        "merged_duplicates": 1,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "wang-ning-2026-01-23-yangsheng-s02e03"
+      ],
       "next_step": "下一次从2026-08-14之后的新节目继续",
       "notes": "音频与已收录的完整视频属于同一场，按完整度相同且保留现有可信来源处理"
     },
@@ -121,15 +238,38 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "wucairen-podcast",
-      "platforms": ["小宇宙"],
+      "platforms": [
+        "小宇宙"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁", "泡泡玛特"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁",
+        "泡泡玛特"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查《武财人》2025年至今的王宁完整音频",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["archive_search", "web_site_query"] },
-      "counts": { "reviewed_results": 1, "candidates_found": 1, "added_new": 1, "merged_duplicates": 0, "excluded": 0 },
-      "accepted_interview_ids": ["wang-ning-2025-06-16-9b0249f7"],
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "archive_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 1,
+        "candidates_found": 1,
+        "added_new": 1,
+        "merged_duplicates": 0,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "wang-ning-2025-06-16-9b0249f7"
+      ],
       "next_step": "下一次从2026-08-14之后的新节目继续",
       "notes": "新增73分钟完整音频；访谈录制于2021年，首次公开发布于2025年，符合本轮按发布时间划定的范围"
     },
@@ -138,14 +278,36 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "jiemian-interviews",
-      "platforms": ["界面新闻"],
+      "platforms": [
+        "界面新闻"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁 泡泡玛特 专访", "王宁 泡泡玛特 对话", "王宁 泡泡玛特 访谈"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁 泡泡玛特 专访",
+        "王宁 泡泡玛特 对话",
+        "王宁 泡泡玛特 访谈"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查界面新闻2025年至今的原创王宁完整谈话内容",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["site_search", "web_site_query"] },
-      "counts": { "reviewed_results": 4, "candidates_found": 4, "added_new": 0, "merged_duplicates": 0, "excluded": 4 },
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "site_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 4,
+        "candidates_found": 4,
+        "added_new": 0,
+        "merged_duplicates": 0,
+        "excluded": 4
+      },
       "accepted_interview_ids": [],
       "next_step": "下一次从2026-08-14之后的新内容继续",
       "notes": "结果为其他媒体访谈复述、短视频片段或业绩发布会报道，均不收录；2019年原创专访超出本轮时间范围"
@@ -155,14 +317,36 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "china-entrepreneur",
-      "platforms": ["中国企业家网"],
+      "platforms": [
+        "中国企业家网"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁 泡泡玛特 专访", "王宁告诉中国企业家", "王宁 访谈"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁 泡泡玛特 专访",
+        "王宁告诉中国企业家",
+        "王宁 访谈"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查《中国企业家》2025年至今的王宁完整谈话内容",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["site_search", "web_site_query"] },
-      "counts": { "reviewed_results": 2, "candidates_found": 2, "added_new": 0, "merged_duplicates": 0, "excluded": 2 },
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "site_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 2,
+        "candidates_found": 2,
+        "added_new": 0,
+        "merged_duplicates": 0,
+        "excluded": 2
+      },
       "accepted_interview_ids": [],
       "next_step": "下一次从2026-08-14之后的新内容继续",
       "notes": "找到采访驱动的叙事报道和资料梳理，但未找到完整问答底稿、完整视频或完整音频，按规则排除"
@@ -172,15 +356,40 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "people-daily",
-      "platforms": ["人民网", "人民日报电子报"],
+      "platforms": [
+        "人民网",
+        "人民日报电子报"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁 泡泡玛特 访谈", "王宁 泡泡玛特 问答", "王宁 泡泡玛特 专访"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁 泡泡玛特 访谈",
+        "王宁 泡泡玛特 问答",
+        "王宁 泡泡玛特 专访"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查人民日报体系2025年至今的王宁完整问答访谈",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["site_search", "web_site_query"] },
-      "counts": { "reviewed_results": 1, "candidates_found": 1, "added_new": 1, "merged_duplicates": 0, "excluded": 0 },
-      "accepted_interview_ids": ["wang-ning-2025-07-21-886ad5a6"],
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "site_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 1,
+        "candidates_found": 1,
+        "added_new": 1,
+        "merged_duplicates": 0,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "wang-ning-2025-07-21-886ad5a6"
+      ],
       "next_step": "下一次从2026-08-14之后的新内容继续",
       "notes": "新增本报记者王昊男完成的连续问答文字底稿，电子报与网页为同一场资产"
     },
@@ -189,14 +398,36 @@
       "person_id": "wang-ning",
       "search_type": "trusted_channel",
       "channel_id": "xinhua-news",
-      "platforms": ["新华网"],
+      "platforms": [
+        "新华网"
+      ],
       "checked_at": "2026-08-13",
-      "queries": ["王宁 泡泡玛特 专访", "王宁 泡泡玛特 访谈", "王宁 泡泡玛特 对话"],
-      "date_range": { "from": "2025-01-01", "to": "2026-08-13" },
+      "queries": [
+        "王宁 泡泡玛特 专访",
+        "王宁 泡泡玛特 访谈",
+        "王宁 泡泡玛特 对话"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
       "scope": "检查新华网和新华社2025年至今的王宁完整谈话内容",
       "status": "completed",
-      "completion_check": { "planned_queries_executed": true, "stopping_rule_met": true, "methods_used": ["site_search", "web_site_query"] },
-      "counts": { "reviewed_results": 4, "candidates_found": 3, "added_new": 0, "merged_duplicates": 0, "excluded": 3 },
+      "completion_check": {
+        "planned_queries_executed": true,
+        "stopping_rule_met": true,
+        "methods_used": [
+          "site_search",
+          "web_site_query"
+        ]
+      },
+      "counts": {
+        "reviewed_results": 4,
+        "candidates_found": 3,
+        "added_new": 0,
+        "merged_duplicates": 0,
+        "excluded": 3
+      },
       "accepted_interview_ids": [],
       "next_step": "下一次从2026-08-14之后的新内容继续",
       "notes": "排除记者见面会、含零散引语的专题报道及人民日报访谈转载；转载只用于追溯到人民日报原始底稿"
@@ -236,7 +467,10 @@
       "completion_check": {
         "planned_queries_executed": true,
         "stopping_rule_met": true,
-        "methods_used": ["platform_search", "web_search"]
+        "methods_used": [
+          "platform_search",
+          "web_search"
+        ]
       },
       "counts": {
         "reviewed_results": 38,
@@ -254,6 +488,368 @@
       ],
       "next_step": "下一次从2026-08-14之后的新发布继续，并复查本轮受平台登录、robots或公开索引限制的页面",
       "notes": "新增FanPodcast今夜只放空的55分钟完整对谈及其节目来源；武财人B站视频、人民日报微博全文、扬声短视频线索和高能量转载均归并至已有场次。排除第三方解读、采访驱动但无完整问答的报道、转载、切片、预告、演讲及目标人物未参与的节目。微博部分页面受robots限制，小红书和部分视频平台的公开网页索引有限，因此completed仅表示本条scope所列公开可检索范围已完成，不代表获得平台内部数据库全量结果"
+    },
+    {
+      "id": "jensen-huang-nvidia-on-demand-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "nvidia-on-demand",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:nvidia.com \"Jensen Huang\" NVIDIA",
+        "site:nvidia.com \"Jensen Huang\" interview",
+        "site:nvidia.com \"Jensen Huang\" conversation",
+        "site:nvidia.com \"Jensen Huang\" \"fireside chat\"",
+        "site:nvidia.com 黄仁勋",
+        "site:nvidia.com \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "限定NVIDIA On-Demand检查2025年至今黄仁勋参与的完整谈话内容",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 8,
+        "candidates_found": 4,
+        "added_new": 1,
+        "merged_duplicates": 0,
+        "excluded": 3
+      },
+      "accepted_interview_ids": [
+        "jensen-huang-2025-03-20-89cec2c2"
+      ],
+      "next_step": "继续使用可交互Advanced Search复查公开索引未覆盖结果",
+      "notes": "发现并新增GTC 2025 Quantum Day两小时多人对谈；CES、GTC、COMPUTEX keynote和APEC special address按演讲排除；JavaScript搜索结果无法证明全量"
+    },
+    {
+      "id": "jensen-huang-nvidia-youtube-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "nvidia-youtube",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:youtube.com/@NVIDIA \"Jensen Huang\" NVIDIA",
+        "site:youtube.com/@NVIDIA \"Jensen Huang\" interview",
+        "site:youtube.com/@NVIDIA \"Jensen Huang\" conversation",
+        "site:youtube.com/@NVIDIA \"Jensen Huang\" \"full video\"",
+        "site:youtube.com/@NVIDIA 黄仁勋",
+        "site:youtube.com/@NVIDIA \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "检查NVIDIA主频道2025年至今的黄仁勋完整谈话",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 6,
+        "candidates_found": 4,
+        "added_new": 0,
+        "merged_duplicates": 0,
+        "excluded": 4
+      },
+      "accepted_interview_ids": [],
+      "next_step": "以后从2026-08-14之后的新上传继续，并在可用时复查频道内部搜索",
+      "notes": "公开结果主要为keynote、special address和剪辑，未形成新增访谈；频道内部结果受平台索引限制"
+    },
+    {
+      "id": "jensen-huang-nvidia-developer-youtube-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "nvidia-developer-youtube",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:youtube.com/@NVIDIADeveloper \"Jensen Huang\" NVIDIA",
+        "site:youtube.com/@NVIDIADeveloper \"Jensen Huang\" interview",
+        "site:youtube.com/@NVIDIADeveloper \"Jensen Huang\" conversation",
+        "site:youtube.com/@NVIDIADeveloper \"Jensen Huang\" \"full video\"",
+        "site:youtube.com/@NVIDIADeveloper 黄仁勋",
+        "site:youtube.com/@NVIDIADeveloper \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "检查NVIDIA Developer频道2025年至今的黄仁勋完整谈话",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 5,
+        "candidates_found": 2,
+        "added_new": 0,
+        "merged_duplicates": 1,
+        "excluded": 1
+      },
+      "accepted_interview_ids": [
+        "jensen-huang-2025-03-20-89cec2c2"
+      ],
+      "next_step": "以后从2026-08-14之后的新上传继续",
+      "notes": "找到GTC量子多人对谈的同场官方视频并合并到On-Demand记录；另一个结果为短入口或非完整资产"
+    },
+    {
+      "id": "jensen-huang-nvidia-ai-podcast-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "nvidia-ai-podcast",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:blogs.nvidia.com \"Jensen Huang\" NVIDIA",
+        "site:blogs.nvidia.com \"Jensen Huang\" podcast",
+        "site:blogs.nvidia.com \"Jensen Huang\" conversation",
+        "site:blogs.nvidia.com 黄仁勋",
+        "site:blogs.nvidia.com \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "检查NVIDIA AI Podcast 2025年至今黄仁勋实际参与的完整节目",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 3,
+        "candidates_found": 0,
+        "added_new": 0,
+        "merged_duplicates": 0,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [],
+      "next_step": "继续复查受动态分页影响的节目历史",
+      "notes": "公开索引结果主要是节目提及黄仁勋或讨论其keynote，未确认黄仁勋实际参加完整节目"
+    },
+    {
+      "id": "jensen-huang-nvidia-blog-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "nvidia-blog",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:blogs.nvidia.com \"Jensen Huang\" NVIDIA",
+        "site:blogs.nvidia.com \"Jensen Huang\" interview",
+        "site:blogs.nvidia.com \"Jensen Huang\" Q&A",
+        "site:blogs.nvidia.com \"Jensen Huang\" transcript",
+        "site:blogs.nvidia.com 黄仁勋",
+        "site:blogs.nvidia.com \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "检查NVIDIA Blog 2025年至今的黄仁勋完整谈话入口",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 6,
+        "candidates_found": 2,
+        "added_new": 0,
+        "merged_duplicates": 0,
+        "excluded": 2
+      },
+      "accepted_interview_ids": [],
+      "next_step": "继续从后续新文章追踪完整原始资产",
+      "notes": "找到J.P. Morgan Healthcare fireside chat报道等线索，但公开页面是摘要报道而非完整视频、音频或底稿"
+    },
+    {
+      "id": "jensen-huang-world-economic-forum-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "world-economic-forum",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:weforum.org \"Jensen Huang\" NVIDIA",
+        "site:weforum.org \"Jensen Huang\" interview",
+        "site:weforum.org \"Jensen Huang\" Q&A",
+        "site:weforum.org \"Jensen Huang\" transcript",
+        "site:weforum.org 黄仁勋",
+        "site:weforum.org \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "检查WEF 2025年至今黄仁勋完整对谈",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 3,
+        "candidates_found": 1,
+        "added_new": 1,
+        "merged_duplicates": 0,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "jensen-huang-2026-01-21-e4e628db"
+      ],
+      "next_step": "后续复查2026-08-14之后的新活动",
+      "notes": "新增Davos 2026 Larry Fink与黄仁勋一对一对谈，播客页面提供完整底稿；短视频与报道属于同场资产"
+    },
+    {
+      "id": "jensen-huang-milken-institute-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "milken-institute",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:milkeninstitute.org \"Jensen Huang\" NVIDIA",
+        "site:milkeninstitute.org \"Jensen Huang\" interview",
+        "site:milkeninstitute.org \"Jensen Huang\" Q&A",
+        "site:milkeninstitute.org \"Jensen Huang\" transcript",
+        "site:milkeninstitute.org 黄仁勋",
+        "site:milkeninstitute.org \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "检查Milken Institute 2025年至今黄仁勋完整对谈",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 3,
+        "candidates_found": 1,
+        "added_new": 1,
+        "merged_duplicates": 0,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "jensen-huang-2025-05-06-123127e5"
+      ],
+      "next_step": "后续复查新活动和无需登录的底稿",
+      "notes": "新增Global Conference 2025 Michael Milken与黄仁勋对谈，官方PDF提供带时间码完整底稿"
+    },
+    {
+      "id": "jensen-huang-microsoft-youtube-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "microsoft-youtube",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:youtube.com/@Microsoft \"Jensen Huang\" NVIDIA",
+        "site:youtube.com/@Microsoft \"Jensen Huang\" interview",
+        "site:youtube.com/@Microsoft \"Jensen Huang\" conversation",
+        "site:youtube.com/@Microsoft \"Jensen Huang\" \"full video\"",
+        "site:youtube.com/@Microsoft 黄仁勋",
+        "site:youtube.com/@Microsoft \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "检查Microsoft官方频道2025年至今黄仁勋完整对谈",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 3,
+        "candidates_found": 1,
+        "added_new": 1,
+        "merged_duplicates": 0,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "jensen-huang-2025-05-19-8eec9710"
+      ],
+      "next_step": "后续从新Build和官方上传继续",
+      "notes": "新增Microsoft Build 2025 Satya Nadella与黄仁勋官方完整视频"
+    },
+    {
+      "id": "jensen-huang-cna-correspondent-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "trusted_channel",
+      "channel_id": "cna-correspondent",
+      "platforms": [
+        "公开网页索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "site:channelnewsasia.com \"Jensen Huang\" NVIDIA",
+        "site:channelnewsasia.com \"Jensen Huang\" interview",
+        "site:channelnewsasia.com \"Jensen Huang\" Q&A",
+        "site:channelnewsasia.com \"Jensen Huang\" transcript",
+        "site:channelnewsasia.com 黄仁勋",
+        "site:channelnewsasia.com \"Jen-Hsun Huang\""
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "检查CNA 2025年至今黄仁勋完整原创专访",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 2,
+        "candidates_found": 1,
+        "added_new": 1,
+        "merged_duplicates": 0,
+        "excluded": 0
+      },
+      "accepted_interview_ids": [
+        "jensen-huang-2026-05-29-253c638e"
+      ],
+      "next_step": "后续从CNA Correspondent新节目继续",
+      "notes": "新增2026年5月29日CNA Correspondent 27分钟完整视频专访"
+    },
+    {
+      "id": "jensen-huang-broad-web-2026-08-13",
+      "person_id": "jensen-huang",
+      "search_type": "broad_web",
+      "channel_id": null,
+      "platforms": [
+        "Google公开索引",
+        "YouTube公开索引",
+        "中文网页公开索引"
+      ],
+      "checked_at": "2026-08-13",
+      "queries": [
+        "黄仁勋 访谈",
+        "黄仁勋 对谈",
+        "黄仁勋 播客",
+        "黄仁勋 文字实录",
+        "\"Jensen Huang\" interview",
+        "\"Jensen Huang\" conversation",
+        "\"Jensen Huang\" podcast",
+        "\"Jensen Huang\" transcript",
+        "黄仁勋 NVIDIA 访谈 interview"
+      ],
+      "date_range": {
+        "from": "2025-01-01",
+        "to": "2026-08-13"
+      },
+      "scope": "按精简计划完成2025-01-01至2026-08-13公开网页范围的黄仁勋访谈补充搜索，并追溯原始发布者",
+      "status": "partial",
+      "counts": {
+        "reviewed_results": 46,
+        "candidates_found": 17,
+        "added_new": 4,
+        "merged_duplicates": 1,
+        "excluded": 12
+      },
+      "accepted_interview_ids": [
+        "jensen-huang-2026-01-21-e4e628db",
+        "jensen-huang-2025-05-06-123127e5",
+        "jensen-huang-2025-05-19-8eec9710",
+        "jensen-huang-2026-05-29-253c638e",
+        "jensen-huang-2025-03-20-89cec2c2"
+      ],
+      "next_step": "下一次从2026-08-14之后的新发布继续，并复查受登录或平台内部索引限制的来源",
+      "notes": "新增WEF、Milken Institute、Microsoft Build和CNA四场访谈；NVIDIA Developer同场量子对谈合并至On-Demand记录。排除主题演讲、special address、报道摘要、转载翻译、剪辑和目标人物未参与内容；另发现2025年后尚待逐条核验的原始访谈线索，因此保持partial"
     }
   ]
 }

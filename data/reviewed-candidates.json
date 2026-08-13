@@ -1,4 +1,61 @@
 {
   "schema_version": 1,
-  "entries": []
+  "entries": [
+    {
+      "id": "reviewed-1786613899718-80d6f0",
+      "person_id": "jensen-huang",
+      "url": "https://www.nvidia.com/en-us/on-demand/session/gtc25-s72484/",
+      "title": "GTC 2025 Keynote",
+      "decision": "excluded",
+      "reason_codes": [
+        "not_conversation"
+      ],
+      "reasons": [
+        "主题演讲，不是访谈或多人对谈"
+      ],
+      "reviewed_at": "2026-08-13"
+    },
+    {
+      "id": "reviewed-1786613900454-1b3ac4",
+      "person_id": "jensen-huang",
+      "url": "https://www.nvidia.com/en-us/on-demand/session/ces25-keynote/",
+      "title": "NVIDIA CEO Jensen Huang Keynote at CES 2025",
+      "decision": "excluded",
+      "reason_codes": [
+        "not_conversation"
+      ],
+      "reasons": [
+        "CES主题演讲，不是访谈"
+      ],
+      "reviewed_at": "2026-08-13"
+    },
+    {
+      "id": "reviewed-1786613901161-93e8f0",
+      "person_id": "jensen-huang",
+      "url": "https://www.nvidia.com/en-us/on-demand/session/other25-apec",
+      "title": "APEC CEO Summit - NVIDIA JHH Special Address",
+      "decision": "excluded",
+      "reason_codes": [
+        "not_conversation"
+      ],
+      "reasons": [
+        "Special Address演讲，不是谈话型内容"
+      ],
+      "reviewed_at": "2026-08-13"
+    },
+    {
+      "id": "reviewed-1786613901833-80ee11",
+      "person_id": "jensen-huang",
+      "url": "https://blogs.nvidia.com/blog/jpmorgan-healthcare-nvidia-lilly/",
+      "title": "CEOs of NVIDIA and Lilly Share Blueprint for What Is Possible",
+      "decision": "excluded",
+      "reason_codes": [
+        "incomplete"
+      ],
+      "reasons": [
+        "官方报道仅概述炉边对谈，没有提供完整视频、音频或底稿"
+      ],
+      "reviewed_at": "2026-08-13"
+    }
+  ]
 }

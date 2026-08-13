@@ -363,6 +363,145 @@
         "verification_status": "partial"
       },
       "id": "wang-ning-2025-10-10-9e2147c7"
+    },
+    {
+      "person_id": "jensen-huang",
+      "title": "Conversation with Jensen Huang, President and CEO of NVIDIA",
+      "program": "World Economic Forum Annual Meeting 2026",
+      "interview_type": "one_on_one",
+      "other_participants": [
+        "Laurence Fink"
+      ],
+      "published_date": "2026-01-21",
+      "event_date": "2026-01-21",
+      "source": {
+        "type": "transcript",
+        "url": "https://www.weforum.org/podcasts/meet-the-leader/episodes/conversation-with-jensen-huang-president-and-ceo-of-nvidia-5dd06ee82e/",
+        "publisher": "World Economic Forum",
+        "channel_id": "world-economic-forum",
+        "language": "en-US"
+      },
+      "topics": [
+        "AI基础设施",
+        "就业",
+        "物理AI",
+        "欧洲产业",
+        "AI投资"
+      ],
+      "id": "jensen-huang-2026-01-21-e4e628db"
+    },
+    {
+      "person_id": "jensen-huang",
+      "title": "A New Innovation Economy: A Conversation with NVIDIA CEO Jensen Huang",
+      "program": "Milken Institute Global Conference 2025",
+      "interview_type": "one_on_one",
+      "other_participants": [
+        "Michael Milken"
+      ],
+      "published_date": "2025-05-06",
+      "event_date": "2025-05-06",
+      "source": {
+        "type": "transcript",
+        "url": "https://milkeninstitute.org/sites/default/files/2025-05/new-innovation-economy-conversation-nvidia-ceo-jensen-huang_Transcript_GC25.pdf",
+        "publisher": "Milken Institute",
+        "channel_id": "milken-institute",
+        "language": "en-US"
+      },
+      "topics": [
+        "AI工业革命",
+        "就业",
+        "技术普惠",
+        "NVIDIA创新",
+        "AI基础设施"
+      ],
+      "id": "jensen-huang-2025-05-06-123127e5"
+    },
+    {
+      "person_id": "jensen-huang",
+      "title": "Conversation with NVIDIA CEO Jensen Huang: Satya Nadella at Microsoft Build 2025",
+      "program": "Microsoft Build 2025",
+      "interview_type": "one_on_one",
+      "other_participants": [
+        "Satya Nadella"
+      ],
+      "published_date": "2025-05-19",
+      "event_date": "2025-05-19",
+      "source": {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=pBRXRApBQog",
+        "publisher": "Microsoft",
+        "channel_id": "microsoft-youtube",
+        "language": "en-US"
+      },
+      "topics": [
+        "Microsoft与NVIDIA合作",
+        "AI平台",
+        "开发者生态"
+      ],
+      "id": "jensen-huang-2025-05-19-8eec9710"
+    },
+    {
+      "person_id": "jensen-huang",
+      "title": "CNA Correspondent - A Conversation with Jensen Huang",
+      "program": "CNA Correspondent",
+      "interview_type": "one_on_one",
+      "other_participants": [
+        "CNA Correspondent"
+      ],
+      "published_date": "2026-05-29",
+      "event_date": null,
+      "source": {
+        "type": "video",
+        "url": "https://www.channelnewsasia.com/watch/cna-correspondent/conversation-jensen-huang-6149046",
+        "publisher": "CNA",
+        "channel_id": "cna-correspondent",
+        "language": "en-US"
+      },
+      "topics": [
+        "AI",
+        "就业",
+        "美中科技竞争",
+        "NVIDIA接班"
+      ],
+      "id": "jensen-huang-2026-05-29-253c638e"
+    },
+    {
+      "person_id": "jensen-huang",
+      "title": "Quantum Computing: Where We Are and Where We’re Headed",
+      "program": "GTC San Jose 2025 Quantum Day",
+      "interview_type": "group_conversation",
+      "other_participants": [
+        "Ben Bloom",
+        "Alan Baratz",
+        "Krysta Svore",
+        "John Levy",
+        "Loïc Henriet",
+        "Matthew Kinsella",
+        "Mikhail Lukin",
+        "Simone Severini",
+        "Subodh Kulkarni",
+        "Pete Shadbolt",
+        "Peter Chapman",
+        "Rob Schoelkopf",
+        "Rajeeb Hazra",
+        "Théau Peronnin"
+      ],
+      "published_date": "2025-03-20",
+      "event_date": "2025-03-20",
+      "source": {
+        "type": "video",
+        "url": "https://www.nvidia.com/en-us/on-demand/session/gtc25-s74495/",
+        "publisher": "NVIDIA On-Demand",
+        "channel_id": "nvidia-on-demand",
+        "language": "en-US"
+      },
+      "topics": [
+        "量子计算",
+        "混合量子经典计算",
+        "量子产业路线",
+        "CUDA-Q"
+      ],
+      "id": "jensen-huang-2025-03-20-89cec2c2"
     }
   ]
 }

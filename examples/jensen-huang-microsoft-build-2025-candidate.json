@@ -1,0 +1,23 @@
+{
+  "person_id": "jensen-huang",
+  "title": "Conversation with NVIDIA CEO Jensen Huang: Satya Nadella at Microsoft Build 2025",
+  "program": "Microsoft Build 2025",
+  "interview_type": "one_on_one",
+  "other_participants": ["Satya Nadella"],
+  "published_date": "2025-05-19",
+  "event_date": "2025-05-19",
+  "source": {
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=pBRXRApBQog",
+    "publisher": "Microsoft",
+    "channel_id": "microsoft-youtube",
+    "language": "en-US"
+  },
+  "topics": ["Microsoft与NVIDIA合作", "AI平台", "开发者生态"],
+  "screening": {
+    "is_primary": true,
+    "is_complete": true,
+    "is_conversation": true,
+    "is_excluded_event": false
+  }
+}

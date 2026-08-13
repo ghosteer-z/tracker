@@ -1,0 +1,23 @@
+{
+  "person_id": "jensen-huang",
+  "title": "CNA Correspondent - A Conversation with Jensen Huang",
+  "program": "CNA Correspondent",
+  "interview_type": "one_on_one",
+  "other_participants": ["CNA Correspondent"],
+  "published_date": "2026-05-29",
+  "event_date": null,
+  "source": {
+    "type": "video",
+    "url": "https://www.channelnewsasia.com/watch/cna-correspondent/conversation-jensen-huang-6149046",
+    "publisher": "CNA",
+    "channel_id": "cna-correspondent",
+    "language": "en-US"
+  },
+  "topics": ["AI", "就业", "美中科技竞争", "NVIDIA接班"],
+  "screening": {
+    "is_primary": true,
+    "is_complete": true,
+    "is_conversation": true,
+    "is_excluded_event": false
+  }
+}

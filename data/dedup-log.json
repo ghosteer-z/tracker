@@ -33,6 +33,77 @@
       "reasons": [
         "未发现达到自动合并阈值的已有访谈"
       ]
+    },
+    {
+      "id": "dedup-1786613258328-28bfa9",
+      "processed_at": "2026-08-13T09:27:38.328Z",
+      "action": "added_new",
+      "candidate_url": "https://www.weforum.org/podcasts/meet-the-leader/episodes/conversation-with-jensen-huang-president-and-ceo-of-nvidia-5dd06ee82e/",
+      "matched_interview_id": "jensen-huang-2026-01-21-e4e628db",
+      "confidence": 1,
+      "reasons": [
+        "未发现达到自动合并阈值的已有访谈"
+      ]
+    },
+    {
+      "id": "dedup-1786613259010-aecfe0",
+      "processed_at": "2026-08-13T09:27:39.010Z",
+      "action": "added_new",
+      "candidate_url": "https://milkeninstitute.org/sites/default/files/2025-05/new-innovation-economy-conversation-nvidia-ceo-jensen-huang_Transcript_GC25.pdf",
+      "matched_interview_id": "jensen-huang-2025-05-06-123127e5",
+      "confidence": 1,
+      "reasons": [
+        "未发现达到自动合并阈值的已有访谈"
+      ]
+    },
+    {
+      "id": "dedup-1786613259704-4d67c9",
+      "processed_at": "2026-08-13T09:27:39.704Z",
+      "action": "added_new",
+      "candidate_url": "https://www.youtube.com/watch?v=pBRXRApBQog",
+      "matched_interview_id": "jensen-huang-2025-05-19-8eec9710",
+      "confidence": 1,
+      "reasons": [
+        "未发现达到自动合并阈值的已有访谈"
+      ]
+    },
+    {
+      "id": "dedup-1786613260385-6d170f",
+      "processed_at": "2026-08-13T09:27:40.385Z",
+      "action": "added_new",
+      "candidate_url": "https://www.channelnewsasia.com/watch/cna-correspondent/conversation-jensen-huang-6149046",
+      "matched_interview_id": "jensen-huang-2026-05-29-253c638e",
+      "confidence": 1,
+      "reasons": [
+        "未发现达到自动合并阈值的已有访谈"
+      ]
+    },
+    {
+      "id": "dedup-1786613416745-81af90",
+      "processed_at": "2026-08-13T09:30:16.745Z",
+      "action": "added_new",
+      "candidate_url": "https://www.nvidia.com/en-us/on-demand/session/gtc25-s74495/",
+      "matched_interview_id": "jensen-huang-2025-03-20-89cec2c2",
+      "confidence": 1,
+      "reasons": [
+        "未发现达到自动合并阈值的已有访谈"
+      ]
+    },
+    {
+      "id": "dedup-1786613522840-d18b4e",
+      "processed_at": "2026-08-13T09:32:02.840Z",
+      "action": "kept_existing",
+      "candidate_url": "https://www.youtube.com/watch?v=sLqlSeXR0Pc",
+      "matched_interview_id": "jensen-huang-2025-03-20-89cec2c2",
+      "confidence": 1,
+      "reasons": [
+        "目标人物相同",
+        "节目或活动名称高度相似",
+        "标题高度相似",
+        "主要参与者重合",
+        "实际谈话日期相同",
+        "完整度和可信范围相同，保留稳定的现有来源"
+      ]
     }
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "person_id": "jensen-huang",
+  "title": "A New Innovation Economy: A Conversation with NVIDIA CEO Jensen Huang",
+  "program": "Milken Institute Global Conference 2025",
+  "interview_type": "one_on_one",
+  "other_participants": ["Michael Milken"],
+  "published_date": "2025-05-06",
+  "event_date": "2025-05-06",
+  "source": {
+    "type": "transcript",
+    "url": "https://milkeninstitute.org/sites/default/files/2025-05/new-innovation-economy-conversation-nvidia-ceo-jensen-huang_Transcript_GC25.pdf",
+    "publisher": "Milken Institute",
+    "channel_id": "milken-institute",
+    "language": "en-US"
+  },
+  "topics": ["AI工业革命", "就业", "技术普惠", "NVIDIA创新", "AI基础设施"],
+  "screening": {
+    "is_primary": true,
+    "is_complete": true,
+    "is_conversation": true,
+    "is_excluded_event": false
+  }
+}

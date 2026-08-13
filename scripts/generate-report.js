@@ -45,13 +45,16 @@ function getCoverage(searches, personId) {
 }
 
 function buildReport({ person, interviews, searches }) {
+  const coverage = getCoverage(searches, person.id);
   const records = interviews
     .filter(interview => interview.person_id === person.id)
+    .filter(interview => !person.tracking_from || interview.published_date >= person.tracking_from)
+    .filter(interview => !coverage
+      || (interview.published_date >= coverage.from && interview.published_date <= coverage.to))
     .sort((left, right) => right.published_date.localeCompare(left.published_date));
 
   if (records.length === 0) throw new Error(`人物 ${person.id} 暂无已收录访谈`);
 
-  const coverage = getCoverage(searches, person.id);
   const verifiedCount = records.filter(record => record.content_review?.verification_status === "verified").length;
   const partialCount = records.filter(record => record.content_review?.verification_status === "partial").length;
   const pendingCount = records.length - verifiedCount - partialCount;
@@ -71,6 +74,7 @@ function buildReport({ person, interviews, searches }) {
   }
 
   lines.push(
+    ...(person.tracking_from ? [`- 统一追踪起点：${person.tracking_from}`] : []),
     `- 内容核验：${verifiedCount} 场已核对完整内容，${partialCount} 场部分核验，${pendingCount} 场待整理`,
     "",
     "> 范围说明：本报告只覆盖检索账本注明的日期与公开可检索范围，不代表更早历史内容或受限平台内部内容已全部覆盖。所有概括均为项目方转述，不是人物原话。标为“部分核验”的内容仅依据原始节目方简介和时间轴整理，引用前应返回完整来源复核。",

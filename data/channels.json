@@ -20,6 +20,9 @@
           "name": "NVIDIA YouTube",
           "type": "youtube",
           "url": "https://www.youtube.com/@NVIDIA",
+          "search_targets": [
+            "youtube.com/@NVIDIA"
+          ],
           "owner": "NVIDIA",
           "source_role": "subject_official",
           "content": "黄仁勋参加的完整对谈、活动回放和官方视频",
@@ -31,6 +34,9 @@
           "name": "NVIDIA Developer YouTube",
           "type": "youtube",
           "url": "https://www.youtube.com/@NVIDIADeveloper",
+          "search_targets": [
+            "youtube.com/@NVIDIADeveloper"
+          ],
           "owner": "NVIDIA",
           "source_role": "subject_official",
           "content": "开发者活动、技术对谈和历史GTC内容",
@@ -58,6 +64,53 @@
           "content": "官方活动报道和访谈入口，可用于发现完整视频或On-Demand页面",
           "search_method": "搜索Jensen Huang及Jen-Hsun Huang并组合interview、conversation、fireside chat、panel，随后追到完整来源",
           "access_notes": "只有摘要的文章不能直接进入访谈清单"
+        },
+        {
+          "id": "world-economic-forum",
+          "name": "World Economic Forum",
+          "type": "official_archive",
+          "url": "https://www.weforum.org/",
+          "owner": "World Economic Forum",
+          "source_role": "event_organizer",
+          "content": "达沃斯等论坛活动主办方发布的完整对谈视频、音频和文字底稿",
+          "search_method": "限定weforum.org搜索Jensen Huang，并检查视频、播客页面和完整底稿是否属于同一场对谈",
+          "access_notes": "同一场活动可能同时存在短视频、完整视频、播客和报道，只保留最完整且便于核验的原始资产"
+        },
+        {
+          "id": "milken-institute",
+          "name": "Milken Institute",
+          "type": "official_archive",
+          "url": "https://milkeninstitute.org/",
+          "owner": "Milken Institute",
+          "source_role": "event_organizer",
+          "content": "Global Conference等活动的完整对谈回放和带时间码文字底稿",
+          "search_method": "限定milkeninstitute.org搜索Jensen Huang，并优先检查event panel页面及Transcript PDF",
+          "access_notes": "部分视频需要登录，但公开Transcript PDF可以用于完整内容核验"
+        },
+        {
+          "id": "microsoft-youtube",
+          "name": "Microsoft YouTube",
+          "type": "youtube",
+          "url": "https://www.youtube.com/@Microsoft",
+          "search_targets": [
+            "youtube.com/@Microsoft"
+          ],
+          "owner": "Microsoft",
+          "source_role": "event_organizer",
+          "content": "Microsoft Build等活动中由微软官方发布的完整嘉宾对谈视频",
+          "search_method": "在Microsoft官方频道及限定频道路径搜索Jensen Huang、conversation和Build",
+          "access_notes": "需要区分完整对谈、主题演讲插播和剪辑片段"
+        },
+        {
+          "id": "cna-correspondent",
+          "name": "CNA Correspondent",
+          "type": "official_archive",
+          "url": "https://www.channelnewsasia.com/watch/cna-correspondent",
+          "owner": "Mediacorp CNA",
+          "source_role": "interview_media",
+          "content": "CNA原创制作并完整发布的国际人物视频专访",
+          "search_method": "限定channelnewsasia.com搜索Jensen Huang和CNA Correspondent，并检查节目时长和发布日期",
+          "access_notes": "只收录完整节目页面，不收录CNA新闻报道中的零散引语或短片"
         }
       ]
     },

@@ -4,17 +4,26 @@
     {
       "id": "jensen-huang",
       "name": "黄仁勋",
+      "tracking_from": "2025-01-01",
       "aliases": [
         "Jensen Huang",
         "Jen-Hsun Huang"
+      ],
+      "search_qualifiers": [
+        "NVIDIA"
       ]
     },
     {
       "id": "wang-ning",
       "name": "王宁",
+      "tracking_from": "2025-01-01",
       "aliases": [
         "泡泡玛特王宁",
         "POP MART Wang Ning"
+      ],
+      "search_qualifiers": [
+        "泡泡玛特",
+        "POP MART"
       ]
     }
   ]

@@ -96,6 +96,9 @@ npm.cmd run import -- <候选访谈.json> --force-new
 npm.cmd run import -- <候选访谈.json> --merge-with <已有访谈id>
 npm.cmd run import -- <候选访谈.json> --reconsider
 
+# 根据搜索计划生成检索账本草稿；确认后增加 --append 写入账本
+npm.cmd run search-log -- --person wang-ning --channel cctv-video --status partial --reviewed 3 --candidates 1 --added 0 --merged 1 --excluded 0 --methods site_search,web_site_query --scope <范围> --next-step <下一步> --notes <备注>
+
 # 生成指定人物的报告
 npm.cmd run report -- wang-ning
 
@@ -109,7 +112,7 @@ npm.cmd test
 
 ## 人物、来源和检索账本
 
-- `data/people.json` 是人物表：保存人物的标准姓名和检索别名。以后增加人物只需在这里新增一条。
+- `data/people.json` 是人物表：保存人物的标准姓名、检索别名、身份限定词和统一追踪起点。当前人物均从 `2025-01-01` 开始追踪，早期 MVP 样本可以保留，但不会进入当前窗口的搜索任务和报告。
 - `data/channels.json` 是按人物分组的一手来源地图：同一个人的来源连续放在一起，记录采访媒体、节目制作方、活动主办方或人物官方渠道，以及每个渠道怎么查。新增来源时只追加到对应人物组末尾，不自动重排。
 - `data/search-log.json` 是检索账本：每次检索写明人物、检索方式、查询词和时间范围，并记录查了什么、处理了多少结果、下次从哪里继续。
 - `data/reviewed-candidates.json` 是重要排除候选的轻量记录：只保存真正进入判断、但因不完整、非一手或属于排除类型而未收录的结果，避免下次重复核验。
@@ -124,7 +127,7 @@ npm.cmd test
 
 `channels.json` 登记的是具体原始发布者或其内容档案，不登记“哔哩哔哩”“小宇宙”“微信”这类通用平台。只有能够核验发布者身份、确实可能提供完整一手谈话内容，并有稳定检索入口的来源才加入。来源清单用于提高发现概率，不代表其中每条内容都会自动收录；具体内容仍需通过完整、一手、谈话形式和排除类型检查。
 
-默认情况下，搜索计划从渠道 `url` 提取一个域名。若同一来源还需要检查电子报、视频子站等其他域名，可以增加可选的 `search_domains` 数组；生成器会逐个域名生成查询。`url` 仍然表示渠道入口，`search_domains` 只控制定向搜索范围。
+默认情况下，搜索计划从渠道 `url` 提取一个域名。若同一来源还需要检查电子报、视频子站等其他域名，可以增加可选的 `search_domains` 数组；若同一平台有多个频道，可用 `search_targets` 记录 `youtube.com/@NVIDIA` 这类频道路径，避免不同频道生成完全相同的查询。`url` 仍然表示渠道入口，这两个字段只控制定向搜索范围。
 
 检索状态只有三种：
 
@@ -141,7 +144,9 @@ npm.cmd test
 
 标记为 `completed` 时必须填写 `completion_check`：`planned_queries_executed` 和 `stopping_rule_met` 都必须为 `true`，`methods_used` 必须说明实际使用了站内搜索、限定域名搜索或平台搜索中的哪些方式。遇到登录、robots、分页或公开索引限制而无法达到停止条件时，只能标记为 `partial` 或 `blocked`。
 
-日常检索先运行 `npm run search-plan -- <person_id>`。默认输出可勾选的 Markdown 清单，使用 `--output <路径>` 可以保存为工作文件，使用 `--format json` 可以保留机器可读输出。程序会从人物标准名、别名、渠道名称和搜索域名自动生成两组清单：第一组是每个可信来源域名的 `site:` 定向查询，第二组是完成定向搜索后使用的全网补充查询。它只生成计划，不自动访问网页；执行者仍需核验原始发布者、完整性和内容类型。
+日常检索先运行 `npm run search-plan -- <person_id>`。未显式传入 `--from` 时使用人物的 `tracking_from`，当前统一为 `2025-01-01`。默认输出可勾选的 Markdown 清单，使用 `--output <路径>` 可以保存为工作文件，使用 `--format json` 可以保留机器可读输出。程序按照视频、播客、视频库和官方档案的差异为每个搜索目标生成约5至6条高价值查询：标准姓名必查、别名补查、身份限定词消歧，不再执行姓名与所有关键词的完全组合。它只生成计划，不自动访问网页；执行者仍需核验原始发布者、完整性和内容类型。
+
+检索完成后使用 `npm run search-log` 生成账本草稿。命令会复用同一搜索计划中的查询词、自动生成不重复的记录 ID，并检查候选数以及新增、合并、排除数量是否自洽；默认只打印 JSON，确认内容后增加 `--append` 才会写入 `search-log.json`。标记 `completed` 时还必须明确传入 `--queries-complete --stopping-rule-met`，否则命令拒绝生成完成记录。
 
 检索时间范围是每次任务的运行参数，不是来源清单的固定属性。本轮王宁 MVP 的可信来源定向检索和全网补充检索统一覆盖 `2025-01-01` 至实际检索日；范围外内容可以作为线索看到，但不继续核验、不进入本轮候选，也不能据此宣称更早历史已经查完。
 
@@ -205,6 +210,7 @@ tracker/
 ├─ scripts/
 │  ├─ validate-data.js           检查数据格式和跨文件关联
 │  ├─ generate-search-plan.js    生成人物定向与全网搜索计划
+│  ├─ create-search-log.js       生成或追加检索账本记录
 │  ├─ dedup-core.js              判断同一事件并选择最佳来源
 │  ├─ import-interview.js         导入候选并写入结果与日志
 │  ├─ review-candidate.js        手工登记重要排除候选
@@ -212,6 +218,8 @@ tracker/
 ├─ tests/                        数据、检索、去重和报告自动测试
 ├─ reports/
 │  └─ wang-ning.md               当前王宁 MVP 报告
+│  ├─ jensen-huang.md            黄仁勋2025年后试跑报告
+│  └─ jensen-huang-search-plan.md 黄仁勋试跑搜索清单
 ├─ package.json                  可执行命令入口
 ├─ PROGRESS.md                   每个开发小步的简短记录
 └─ README.md                     项目规则、流程和使用说明
@@ -220,7 +228,7 @@ tracker/
 ## 当前边界
 
 - 王宁：完成 `2025-01-01` 至 `2026-08-13` 公开可检索范围的 MVP；
-- 黄仁勋：只完成 NVIDIA 官方来源的一场试跑，不代表完整覆盖；
+- 黄仁勋：已完成 `2025-01-01` 至 `2026-08-13` 的轻量流程试跑，收录5场并保留待继续核验的 `partial` 边界，不代表公开网络绝对完整覆盖；
 - 当前检索执行仍需要实际发起搜索和核验网页，并非后台自动爬虫；
 - 受登录、robots、站内搜索和公开索引限制的平台，不能宣称获得内部数据库的绝对全量结果；
 - 完整音视频的逐段转写与核验尚未自动化，`partial` 内容仍需后续升级为 `verified`。

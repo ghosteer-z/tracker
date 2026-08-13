@@ -97,12 +97,20 @@ for (const [index, person] of (peopleData.people || []).entries()) {
   for (const field of ["id", "name"]) requireString(person, field, label);
   checkId(person.id, label);
   checkUniqueId(person.id, personIds, label);
+  if (person.tracking_from !== undefined && !isDate(person.tracking_from)) {
+    errors.push(`${label}: tracking_from 必须是有效的 YYYY-MM-DD 日期`);
+  }
   if (personNames.has(person.name)) errors.push(`${label}: name 与 ${personNames.get(person.name)} 重复`);
   else personNames.set(person.name, label);
   if (!Array.isArray(person.aliases)) {
     errors.push(`${label}: aliases 必须是数组`);
   } else if (person.aliases.some(alias => typeof alias !== "string" || alias.trim() === "")) {
     errors.push(`${label}: aliases 中的每一项都必须是非空文字`);
+  }
+  if (person.search_qualifiers !== undefined
+    && (!Array.isArray(person.search_qualifiers) || person.search_qualifiers.length === 0
+      || person.search_qualifiers.some(item => typeof item !== "string" || item.trim() === ""))) {
+    errors.push(`${label}: search_qualifiers 必须是非空文字数组`);
   }
 }
 
@@ -231,6 +239,15 @@ for (const [groupIndex, group] of (channelData.people || []).entries()) {
         errors.push(`${label}: search_domains 不能包含重复域名`);
       }
     }
+    if (channel.search_targets !== undefined) {
+      if (!Array.isArray(channel.search_targets) || channel.search_targets.length === 0
+        || channel.search_targets.some(target => typeof target !== "string"
+          || !/^(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s]*)?$/i.test(target))) {
+        errors.push(`${label}: search_targets 必须是非空的有效域名或域名路径数组`);
+      } else if (new Set(channel.search_targets).size !== channel.search_targets.length) {
+        errors.push(`${label}: search_targets 不能包含重复目标`);
+      }
+    }
     if (channelUrls.has(channel.url)) errors.push(`${label}: url 与 ${channelUrls.get(channel.url)} 重复`);
     else channelUrls.set(channel.url, label);
   }
@@ -256,6 +273,7 @@ for (const [index, search] of (searchData.searches || []).entries()) {
   checkId(search.id, label);
   checkUniqueId(search.id, searchIds, label);
   if (!personIds.has(search.person_id)) errors.push(`${label}: person_id 找不到对应人物`);
+  const searchPerson = (peopleData.people || []).find(person => person.id === search.person_id);
   if (!allowedSearchTypes.has(search.search_type)) {
     errors.push(`${label}: search_type 只能是 trusted_channel 或 broad_web`);
   }
@@ -280,6 +298,8 @@ for (const [index, search] of (searchData.searches || []).entries()) {
       errors.push(`${label}: date_range 必须是 null 或包含有效 from、to 日期的对象`);
     } else if (range.from > range.to) {
       errors.push(`${label}: date_range.from 不能晚于 date_range.to`);
+    } else if (searchPerson?.tracking_from && range.from < searchPerson.tracking_from) {
+      errors.push(`${label}: date_range.from 不能早于人物 tracking_from ${searchPerson.tracking_from}`);
     }
   }
   if (!isDate(search.checked_at)) errors.push(`${label}: checked_at 必须是有效的 YYYY-MM-DD 日期`);
