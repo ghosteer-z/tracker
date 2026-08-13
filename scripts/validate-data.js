@@ -8,6 +8,9 @@ const allowedChannelTypes = new Set(["video_library", "youtube", "podcast_archiv
 const allowedSearchStatuses = new Set(["partial", "completed", "blocked"]);
 const allowedSearchTypes = new Set(["trusted_channel", "broad_web"]);
 const allowedSourceRoles = new Set(["subject_official", "interview_media", "program_producer", "event_organizer"]);
+const allowedSummaryTypes = new Set(["editorial_paraphrase"]);
+const allowedEvidenceBases = new Set(["full_transcript", "full_video", "full_audio"]);
+const allowedVerificationStatuses = new Set(["verified", "partial"]);
 const errors = [];
 
 function readJson(filename) {
@@ -113,6 +116,48 @@ const eventSignatures = new Map();
     errors.push(`${label}: event_date 不知道时填 null，否则必须是有效的 YYYY-MM-DD 日期`);
   }
   if (!Array.isArray(record.topics)) errors.push(`${label}: topics 必须是数组`);
+
+  const contentFields = [record.content_summary, record.key_points, record.content_review];
+  const hasAnyContentField = contentFields.some(value => value !== undefined);
+  const hasAllContentFields = contentFields.every(value => value !== undefined);
+  if (hasAnyContentField && !hasAllContentFields) {
+    errors.push(`${label}: content_summary、key_points 和 content_review 必须同时填写`);
+  }
+  if (hasAllContentFields) {
+    requireString(record, "content_summary", label);
+    if (!Array.isArray(record.key_points) || record.key_points.length === 0) {
+      errors.push(`${label}: key_points 必须是非空数组`);
+    } else {
+      for (const [pointIndex, point] of record.key_points.entries()) {
+        const pointLabel = `${label}.key_points 第 ${pointIndex + 1} 条`;
+        if (!point || typeof point !== "object" || Array.isArray(point)) {
+          errors.push(`${pointLabel}: 必须是对象`);
+          continue;
+        }
+        for (const field of ["summary", "locator"]) requireString(point, field, pointLabel);
+      }
+    }
+
+    const review = record.content_review;
+    if (!review || typeof review !== "object" || Array.isArray(review)) {
+      errors.push(`${label}: content_review 必须是对象`);
+    } else {
+      for (const field of ["summary_type", "evidence_basis", "evidence_url", "reviewed_at", "verification_status"]) {
+        requireString(review, field, `${label}.content_review`);
+      }
+      if (!allowedSummaryTypes.has(review.summary_type)) {
+        errors.push(`${label}: content_review.summary_type 只能是 editorial_paraphrase`);
+      }
+      if (!allowedEvidenceBases.has(review.evidence_basis)) {
+        errors.push(`${label}: content_review.evidence_basis 只能是 full_transcript、full_video 或 full_audio`);
+      }
+      if (!isUrl(review.evidence_url)) errors.push(`${label}: content_review.evidence_url 必须是有效链接`);
+      if (!isDate(review.reviewed_at)) errors.push(`${label}: content_review.reviewed_at 必须是有效的 YYYY-MM-DD 日期`);
+      if (!allowedVerificationStatuses.has(review.verification_status)) {
+        errors.push(`${label}: content_review.verification_status 只能是 verified 或 partial`);
+      }
+    }
+  }
 
   const source = record.source;
   if (!source || typeof source !== "object" || Array.isArray(source)) {
