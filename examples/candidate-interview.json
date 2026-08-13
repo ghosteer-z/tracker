@@ -1,0 +1,27 @@
+{
+  "person_id": "wang-ning",
+  "title": "候选访谈标题",
+  "program": "节目或活动名称",
+  "interview_type": "one_on_one",
+  "other_participants": [
+    "主持人或其他主要参与者"
+  ],
+  "published_date": "2026-08-13",
+  "event_date": null,
+  "source": {
+    "type": "video",
+    "url": "https://example.com/full-interview",
+    "publisher": "原始发布方",
+    "channel_id": null,
+    "language": "zh-CN"
+  },
+  "topics": [
+    "主要话题"
+  ],
+  "screening": {
+    "is_primary": true,
+    "is_complete": true,
+    "is_conversation": true,
+    "is_excluded_event": false
+  }
+}

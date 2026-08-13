@@ -63,7 +63,41 @@
     },
     {
       "person_id": "wang-ning",
-      "channels": []
+      "channels": [
+        {
+          "id": "tencent-video-documentary-youtube",
+          "name": "Tencent Video Documentary YouTube",
+          "type": "youtube",
+          "url": "https://www.youtube.com/@TencentVideoDocumentary",
+          "owner": "腾讯视频",
+          "source_role": "program_producer",
+          "content": "腾讯视频纪录片及访谈节目的官方完整视频",
+          "search_method": "在频道内搜索王宁、泡泡玛特王宁和POP MART Wang Ning",
+          "access_notes": "需要区分国内首发日期与YouTube上传日期"
+        },
+        {
+          "id": "cctv-video",
+          "name": "央视网视频",
+          "type": "official_archive",
+          "url": "https://tv.cctv.com/",
+          "owner": "中央广播电视总台",
+          "source_role": "program_producer",
+          "content": "央视栏目制作和发布的完整访谈视频",
+          "search_method": "搜索王宁、泡泡玛特王宁，并检查《对话》等栏目页面",
+          "access_notes": "需要区分完整版、新闻摘要和短视频片段"
+        },
+        {
+          "id": "high-energy-podcast",
+          "name": "高能量播客",
+          "type": "podcast_archive",
+          "url": "https://www.xiaoyuzhoufm.com/podcast/61358d671c5d56efe5bcb5d2",
+          "owner": "高能量",
+          "source_role": "program_producer",
+          "content": "高能量制作和发布的完整播客访谈",
+          "search_method": "在节目历史内容中搜索王宁和泡泡玛特",
+          "access_notes": "节目可能同时存在音频版和较短视频版，优先保留完整版本"
+        }
+      ]
     }
   ]
 }

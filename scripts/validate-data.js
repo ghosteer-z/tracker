@@ -61,12 +61,14 @@ const interviewData = readJson("interviews.json");
 const peopleData = readJson("people.json");
 const channelData = readJson("channels.json");
 const searchData = readJson("search-log.json");
+const dedupData = readJson("dedup-log.json");
 
 for (const [name, data, listField] of [
   ["interviews.json", interviewData, "interviews"],
   ["people.json", peopleData, "people"],
   ["channels.json", channelData, "people"],
-  ["search-log.json", searchData, "searches"]
+  ["search-log.json", searchData, "searches"],
+  ["dedup-log.json", dedupData, "entries"]
 ]) {
   if (data.schema_version !== 1) errors.push(`${name}: schema_version 必须是 1`);
   if (!Array.isArray(data[listField])) errors.push(`${name}: ${listField} 必须是数组`);
@@ -93,7 +95,7 @@ const interviewsById = new Map();
 const sourceUrls = new Map();
 const eventSignatures = new Map();
 
-for (const [index, record] of (interviewData.interviews || []).entries()) {
+  for (const [index, record] of (interviewData.interviews || []).entries()) {
   const label = `访谈第 ${index + 1} 条${record.id ? ` (${record.id})` : ""}`;
   for (const field of ["id", "person_id", "title", "program", "published_date"]) requireString(record, field, label);
   checkId(record.id, label);
@@ -104,7 +106,7 @@ for (const [index, record] of (interviewData.interviews || []).entries()) {
   if (!allowedInterviewTypes.has(record.interview_type)) {
     errors.push(`${label}: interview_type 只能是 one_on_one 或 group_conversation`);
   }
-  if (!Array.isArray(record.interviewers)) errors.push(`${label}: interviewers 必须是数组`);
+  if (!Array.isArray(record.other_participants)) errors.push(`${label}: other_participants 必须是数组`);
   if (!isDate(record.published_date)) errors.push(`${label}: published_date 必须是有效的 YYYY-MM-DD 日期`);
   if (record.event_date !== null && !isDate(record.event_date)) {
     errors.push(`${label}: event_date 不知道时填 null，否则必须是有效的 YYYY-MM-DD 日期`);
@@ -120,6 +122,9 @@ for (const [index, record] of (interviewData.interviews || []).entries()) {
     errors.push(`${label}: source.type 只能是 transcript、video 或 audio`);
   }
   for (const field of ["url", "publisher", "language"]) requireString(source, field, `${label}.source`);
+  if (source.channel_id !== null && (typeof source.channel_id !== "string" || source.channel_id.trim() === "")) {
+    errors.push(`${label}: source.channel_id 必须是非空文字或 null`);
+  }
   if (!isUrl(source.url)) errors.push(`${label}: source.url 必须是有效的 http(s) 链接`);
   if (sourceUrls.has(source.url)) errors.push(`${label}: 来源链接与 ${sourceUrls.get(source.url)} 重复`);
   else sourceUrls.set(source.url, label);
@@ -168,6 +173,13 @@ for (const personId of personIds.keys()) {
   if (!channelGroupPersonIds.has(personId)) errors.push(`channels.json: 缺少人物来源组 ${personId}`);
 }
 
+for (const [index, record] of (interviewData.interviews || []).entries()) {
+  const label = `访谈第 ${index + 1} 条 (${record.id})`;
+  if (record.source?.channel_id && !channelsByPerson.get(record.person_id)?.has(record.source.channel_id)) {
+    errors.push(`${label}: source.channel_id 不属于该人物的一手来源清单`);
+  }
+}
+
 const searchIds = new Map();
 for (const [index, search] of (searchData.searches || []).entries()) {
   const label = `检索第 ${index + 1} 条${search.id ? ` (${search.id})` : ""}`;
@@ -199,6 +211,24 @@ for (const [index, search] of (searchData.searches || []).entries()) {
   }
 }
 
+const allowedDedupActions = new Set(["excluded", "added_new", "replaced_source", "kept_existing"]);
+const dedupIds = new Map();
+for (const [index, entry] of (dedupData.entries || []).entries()) {
+  const label = `去重日志第 ${index + 1} 条${entry.id ? ` (${entry.id})` : ""}`;
+  for (const field of ["id", "processed_at", "action"]) requireString(entry, field, label);
+  checkUniqueId(entry.id, dedupIds, label);
+  if (Number.isNaN(new Date(entry.processed_at).valueOf())) errors.push(`${label}: processed_at 必须是有效时间`);
+  if (!allowedDedupActions.has(entry.action)) errors.push(`${label}: 不支持的 action ${entry.action}`);
+  if (entry.candidate_url !== null && !isUrl(entry.candidate_url)) errors.push(`${label}: candidate_url 必须是有效链接或 null`);
+  if (!Array.isArray(entry.reasons) || entry.reasons.length === 0) errors.push(`${label}: reasons 必须是非空数组`);
+  if (typeof entry.confidence !== "number" || entry.confidence < 0 || entry.confidence > 1) {
+    errors.push(`${label}: confidence 必须是0到1之间的数字`);
+  }
+  if (entry.action !== "excluded" && !interviewIds.has(entry.matched_interview_id)) {
+    errors.push(`${label}: matched_interview_id 找不到对应访谈`);
+  }
+}
+
 if (errors.length) {
   console.error(`校验失败，共 ${errors.length} 个问题：`);
   for (const error of errors) console.error(`- ${error}`);
@@ -206,5 +236,5 @@ if (errors.length) {
 }
 
 console.log(
-  `校验通过：${peopleData.people.length} 个人物，${interviewData.interviews.length} 场访谈，${channelCount} 个一手来源，${searchData.searches.length} 条检索记录。`
+  `校验通过：${peopleData.people.length} 个人物，${interviewData.interviews.length} 场访谈，${channelCount} 个一手来源，${searchData.searches.length} 条检索记录，${dedupData.entries.length} 条去重日志。`
 );

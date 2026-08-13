@@ -7,7 +7,7 @@
       "title": "张扬对话王宁：中国潮玩为何能风靡全球",
       "program": "扬声 第2季 第3集",
       "interview_type": "one_on_one",
-      "interviewers": [
+      "other_participants": [
         "张扬"
       ],
       "published_date": "2026-01-23",
@@ -16,6 +16,7 @@
         "type": "video",
         "url": "https://www.youtube.com/watch?v=G9xZVxKKDGI",
         "publisher": "Tencent Video Documentary",
+        "channel_id": "tencent-video-documentary-youtube",
         "language": "zh-CN"
       },
       "topics": [
@@ -30,13 +31,14 @@
       "title": "一场关于快乐的商业革命",
       "program": "央视《对话》",
       "interview_type": "one_on_one",
-      "interviewers": [],
+      "other_participants": [],
       "published_date": "2026-03-28",
       "event_date": null,
       "source": {
         "type": "video",
         "url": "https://tv.cctv.com/2026/03/28/VIDETH3qW2kpyiDOiu487F0D260328.shtml",
         "publisher": "央视网",
+        "channel_id": "cctv-video",
         "language": "zh-CN"
       },
       "topics": [
@@ -51,7 +53,7 @@
       "title": "再访王宁：与王宁聊他的2025年以及泡泡玛特的未来",
       "program": "高能量 Vol.215",
       "interview_type": "group_conversation",
-      "interviewers": [
+      "other_participants": [
         "李翔",
         "李丰"
       ],
@@ -61,6 +63,7 @@
         "type": "audio",
         "url": "https://www.xiaoyuzhoufm.com/episode/69fab1bcf93890ea814d0717",
         "publisher": "高能量",
+        "channel_id": "high-energy-podcast",
         "language": "zh-CN"
       },
       "topics": [
@@ -75,8 +78,8 @@
       "title": "Fireside Chat with Ilya Sutskever and Jensen Huang: AI Today and Vision of the Future",
       "program": "GTC Digital Spring 2023",
       "interview_type": "one_on_one",
-      "interviewers": [
-        "黄仁勋"
+      "other_participants": [
+        "Ilya Sutskever"
       ],
       "published_date": "2023-03-22",
       "event_date": null,
@@ -84,6 +87,7 @@
         "type": "transcript",
         "url": "https://www.nvidia.com/en-us/on-demand/session/gtcspring23-s52092/",
         "publisher": "NVIDIA On-Demand",
+        "channel_id": "nvidia-on-demand",
         "language": "en-US"
       },
       "topics": [
