@@ -45,12 +45,12 @@ test("报告包含唯一一手来源、摘要、定位和核验提示", () => {
   assert.match(report, /部分核验（尚未逐段核对完整内容）/);
 });
 
-test("报告只包含目标人物并按发布日期排列", () => {
+test("报告只包含目标人物并按发布日期倒序排列", () => {
   const later = { ...baseInterview, id: "later", title: "较晚访谈", published_date: "2025-02-01" };
   const earlier = { ...baseInterview, id: "earlier", title: "较早访谈", published_date: "2025-01-01" };
   const anotherPerson = { ...baseInterview, id: "other", person_id: "other-person", title: "不应出现" };
   const report = buildReport({ person, interviews: [later, anotherPerson, earlier], searches: [] });
 
-  assert.ok(report.indexOf("较早访谈") < report.indexOf("较晚访谈"));
+  assert.ok(report.indexOf("较晚访谈") < report.indexOf("较早访谈"));
   assert.doesNotMatch(report, /不应出现/);
 });

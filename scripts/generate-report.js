@@ -47,7 +47,7 @@ function getCoverage(searches, personId) {
 function buildReport({ person, interviews, searches }) {
   const records = interviews
     .filter(interview => interview.person_id === person.id)
-    .sort((left, right) => left.published_date.localeCompare(right.published_date));
+    .sort((left, right) => right.published_date.localeCompare(left.published_date));
 
   if (records.length === 0) throw new Error(`人物 ${person.id} 暂无已收录访谈`);
 
